@@ -18,7 +18,7 @@
 
 <div class="container" id="container">
     <div class="logo">
-       <center> <img src="/SURIS/images/image.png" alt="Logo"></center>
+       <center> <img src="images/image.png" alt="Logo"></center>
     </div>
     <form id="signup-form">
         <p class="glitch">Username </p>
@@ -45,7 +45,7 @@
         element.classList.add('show2'); // Adiciona a classe 'show' a cada elemento
     });
         setTimeout(function() {
-            window.location.href = "https://srdarf.github.io/SURIS/GENERIC%20LOGIN%20THING/index.html";
+            window.location.href = "/GENERIC LOGIN THING/index.html";
         }, 1500); // Aguarda 500ms antes de redirecionar
     }
 
@@ -121,6 +121,7 @@ document.getElementById("signup-form").addEventListener("submit", function(event
                     // Adiciona o novo usuário à coleção
                     db.collection("users").doc(username).set({
                         password: password,
+                        level: 1,
                         items: [],
                         score: 0
                     })
