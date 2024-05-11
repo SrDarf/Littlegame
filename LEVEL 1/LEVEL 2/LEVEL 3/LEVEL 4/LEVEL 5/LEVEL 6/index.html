@@ -14,7 +14,7 @@
 
       <div class="hint" id="show-Popup">
         <i class="fas fa-lightbulb lamp-icon"></i>
-        <center>  <a href="/LEVEL 1/LEVEL -2/index.html" style="color: white;" class="aref"><i class="fa-solid fa-house"> </i></a>  </center>
+        <center>  <a href="/SURIS/LEVEL 1/LEVEL -2/index.html" style="color: white;" class="aref"><i class="fa-solid fa-house"> </i></a>  </center>
     </div>
 
 
@@ -91,7 +91,7 @@ usersRef.doc(username).get().then(doc => {
             console.log("Credenciais válidas. Usuário autenticado com sucesso.");
 
             if (userData.level < 6){
-            window.location.href = '/403.html'
+            window.location.href = '/SURIS/403.html'
             }
         
             
@@ -194,14 +194,14 @@ usersRef.doc(username).get()
                 .then(() => {
                     console.log("Nível do usuário atualizado para", newLevel);
                     // Redireciona para a nova página do site
-                    window.location.href = "LEVEL 7/index1.html";
+                    window.location.href = "/SURIS/LEVEL 7/index1.html";
                 })
                 .catch(error => {
                     console.error("Erro ao atualizar o nível do usuário:", error);
                 });
             } else {
                 console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
-                window.location.href = "LEVEL 7/index1.html";
+                window.location.href = "/SURIS/LEVEL 7/index1.html";
             }
         } else {
             console.log("Documento do usuário não encontrado.");
@@ -231,14 +231,14 @@ usersRef.doc(username).get()
                 .then(() => {
                     console.log("Nível do usuário atualizado para", newLevel);
                     // Redireciona para a nova página do site
-                    window.location.href = "LEVEL 7/index1.html";
+                    window.location.href = "/SURIS/LEVEL 7/index1.html";
                 })
                 .catch(error => {
                     console.error("Erro ao atualizar o nível do usuário:", error);
                 });
             } else {
                 console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
-                window.location.href = "LEVEL 7/index1.html";
+                window.location.href = "/SURIS/LEVEL 7/index1.html";
             }
         } else {
             console.log("Documento do usuário não encontrado.");
@@ -268,14 +268,14 @@ usersRef.doc(username).get()
                 .then(() => {
                     console.log("Nível do usuário atualizado para", newLevel);
                     // Redireciona para a nova página do site
-                    window.location.href = "LEVEL 7/index1.html";
+                    window.location.href = "/SURIS/LEVEL 7/index1.html";
                 })
                 .catch(error => {
                     console.error("Erro ao atualizar o nível do usuário:", error);
                 });
             } else {
                 console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
-                window.location.href = "LEVEL 7/index1.html";
+                window.location.href = "/SURIS/LEVEL 7/index1.html";
             }
         } else {
             console.log("Documento do usuário não encontrado.");
@@ -327,7 +327,7 @@ icon.onclick = function() {
     
    
     if (confirmacao) {
-        window.location.href = "LEVEL 7/index1.html"; 
+        window.location.href = "/SURIS/LEVEL 7/index1.html"; 
     }
 };
 

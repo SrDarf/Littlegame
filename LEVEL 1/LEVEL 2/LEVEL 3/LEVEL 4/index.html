@@ -54,12 +54,12 @@ My answer is what you need, that's a fact. -->
 
 
 
-    <a href="/GENERIC LOGIN THING/index.html" style="color: white; margin: 1rem;">
+    <a href="/SURIS/GENERIC LOGIN THING/index.html" style="color: white; margin: 1rem;">
         <i class="fa fa-sign-out out" aria-hidden="true"></i>
         
     </a>
   
-  <center>  <a href="/LEVEL 1/LEVEL -2/index.html" style="color: white;" class="aref"><i class="fa-solid fa-house"> </i></a>  </center>
+  <center>  <a href="/SURIS/LEVEL 1/LEVEL -2/index.html" style="color: white;" class="aref"><i class="fa-solid fa-house"> </i></a>  </center>
   
   
     <a href="#" id="question" onclick="alert('Find the longitude and latitude by analyzing the color and position of the colors of the moved pieces, when you find the number the input will turn green and you will get a latitude and longitude, after that just put it on Google maps and you will find an island with a Plus Code in the bar on the side and this will be the answer')" style=" margin: 1rem;" class="hintbtn">
@@ -138,7 +138,7 @@ usersRef.doc(username).get().then(doc => {
             console.log("Credenciais válidas. Usuário autenticado com sucesso.");
 
             if (userData.level < 4){
-            window.location.href = '/403.html'
+            window.location.href = '/SURIS/403.html'
             }
         
             
@@ -219,14 +219,14 @@ usersRef.doc(username).get()
                 .then(() => {
                     console.log("Nível do usuário atualizado para", newLevel);
                     // Redireciona para a nova página do site
-                    window.location.href = "LEVEL -5/index.html";
+                    window.location.href = "/SURIS/LEVEL -5/index.html";
                 })
                 .catch(error => {
                     console.error("Erro ao atualizar o nível do usuário:", error);
                 });
             } else {
                 console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
-                window.location.href = "LEVEL -5/index.html";
+                window.location.href = "/SURIS/LEVEL -5/index.html";
             }
         } else {
             console.log("Documento do usuário não encontrado.");
@@ -308,14 +308,14 @@ usersRef.doc(username).get()
                 .then(() => {
                     console.log("Nível do usuário atualizado para", newLevel);
                     // Redireciona para a nova página do site
-                    window.location.href = "LEVEL -5/index.html";
+                    window.location.href = "/SURIS/LEVEL -5/index.html";
                 })
                 .catch(error => {
                     console.error("Erro ao atualizar o nível do usuário:", error);
                 });
             } else {
                 console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
-                window.location.href = "LEVEL -5/index.html";
+                window.location.href = "/SURIS/LEVEL -5/index.html";
             }
         } else {
             console.log("Documento do usuário não encontrado.");

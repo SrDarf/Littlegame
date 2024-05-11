@@ -222,7 +222,7 @@ elements.forEach(function(element, index) {
 function checkNumber() {
     var inputValue = document.querySelector(".in").value;
     if (inputValue === "-..") {
-        window.location.href = "LEVEL -2/index.html";
+        window.location.href = "/SURIS/LEVEL -2/index.html";
     }
 }
 
@@ -235,7 +235,7 @@ icon.onclick = function() {
     
    
     if (confirmacao) {
-        window.location.href = "LEVEL 2/index.html"; 
+        window.location.href = "/SURIS/LEVEL 2/index.html"; 
     }
 };
 
