@@ -622,15 +622,15 @@ if (userCredentials && userCredentials.username) {
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+window.onload = function() {
     var wrapper = document.getElementById("myWrapper");
-    wrapper.classList.add("clique");
 
-    // Simular clique novamente após 2 segundos
+    // Simulate click again after 2 seconds
     setTimeout(function() {
         wrapper.click();
     }, 2000);
-});
+};
+
 </script>
     
 </body>
