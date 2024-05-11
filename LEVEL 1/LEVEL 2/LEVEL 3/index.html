@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Coffe Break</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+
+
+<body class="noise-wrapper">
+    <div class="noise"></div>
+</div>
+<div class="wrap">
+<ul>
+    <li id="typing-container"></li>
+
+</ul>
+<span contenteditable="true"> </span><b class="blink">|</b> 
+</div>
+
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+      
+
+
+
+  <a href="/GENERIC LOGIN THING/index.html" style="color: white; margin: 1rem;">
+      <i class="fa fa-sign-out out" aria-hidden="true"></i>
+  </a>
+
+<center>  <a href="/LEVEL 1/LEVEL -2/index.html" style="color: white;" class="aref"><i class="fa-solid fa-house"> </i></a>  </center>
+
+
+  <a href="#" id="question" onclick="hint()" style=" margin: 1rem;" class="hintbtn">
+      <i class="fa-solid fa-question inu" aria-hidden="true"></i>
+  </a>
+</header>
+
+
+
+<div class="footer"><center></center>
+    <div style="font-size: 10px;  text-align: center;  color: #666;  background:rgba(0,0,0,0.3);  width: 100vw;max-width:100%; opacity: 0.5;padding:50px 0;">This page uses the design of the developer: <p5 href="" target="_b" style="color: #999">Nodws</5p> <br> All Enigmas are made by me :D</div></div>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> <script  src="script.js"></script>
+  <audio id="audio" autoplay loop>
+    <source src="audio/fire.mp3" type="audio/mpeg">
+</audio>
+
+
+<script>
+  window.onload = function() {
+       var elements = document.querySelectorAll('.black'); 
+       elements.forEach(function(element) {
+           element.classList.add('hidden'); 
+       });
+   };
+</script>
+
+
+
+
+<!-- PASSWORD_BEFORE_INVERSION = 1212 -->
+
+<div class="toast" id="errorToast" style="position: absolute;">Just use the arrows to reach the Glowing white ball </div>
+
+<script src="https://kit.fontawesome.com/bef417f226.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAwIY0tol3DjhSdDRdZGUQVU5TsiqWBhwM",
+    authDomain: "the-void-1b86a.firebaseapp.com",
+    projectId: "the-void-1b86a",
+    storageBucket: "the-void-1b86a.appspot.com",
+    messagingSenderId: "629518131133",
+    appId: "1:629518131133:web:6a1617370f0829e089bcd4"
+  };
+
+firebase.initializeApp(firebaseConfig)
+
+if(firebase.app().options.apiKey === firebaseConfig.apiKey) {
+   console.log('Database conectada com sucesso');
+} else {
+   console.error('Erro ao conectar ao Firebase');
+   location.reload();
+}
+
+
+const db = firebase.firestore();
+const usersRef = db.collection('users');
+let win = false; 
+
+let userData;
+
+
+const userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
+const { username, password } = userCredentials;
+
+usersRef.doc(username).get().then(doc => {
+    if (doc.exists) {
+        userData = doc.data();
+        if (userData.password === password) {
+            console.log("Credenciais válidas. Usuário autenticado com sucesso.");
+
+            if (userData.level < 2){
+            window.location.href = '/403.html'
+            }
+        
+            
+
+        } else {
+            console.log("Senha incorreta. Por favor, verifique suas credenciais.");
+        }
+    } else {
+        console.log("Usuário não encontrado. Por favor, verifique suas credenciais.");
+    }
+}).catch(error => {
+    console.error("Erro ao verificar credenciais:", error);
+});
+
+
+
+
+
+$('html').on('click', function() {
+    $('span').focus();
+  });
+  
+  var g = 0;
+  var countdownValue = 3; 
+  var countdownInterval;
+  
+
+  
+  $('span').on('input', function() {
+    var v = $(this).text(),
+      l = $('li:last-of-type'),
+      t = $(this);
+    v = v.replace(/\s/g, '');
+    switch (v.toLowerCase()) {
+      case "no":
+      case "not":  
+      case "Not":
+      case "No":    
+      case "não":
+      case "nao":
+        l.after('<li>Oh you don"t have any choice :D');
+        t.text('');
+        startRandomText();
+        startBlinking();
+        setTimeout(function() {
+          l.text("Haha you don't have any choice :D");
+          setTimeout(function() {
+            startCountdown();
+          }, 2000); 
+        }, 3000); 
+        break;
+      case "yes":
+      case "vamo":
+      case "sim":
+      case "ja":
+        l.after('<li>Oh great! Redirecting in 3 seconds');
+        g = 1;
+        t.text('');
+        startCountdownToRedirect(); 
+        break;
+      case "cruc":
+      case "rruc":
+      case "jruc":
+        l.after('<li>GLOBAL THERMONUCLEAR WAR INITIATED, HAVE A NICE DAY<br><br>WINNER: NONE');
+        $('center').text('Only winning move is not to play!'); t.text('3...2....1...'); setTimeout(function() {
+          l.after('<iframe width="420" height="315" src="//www.youtube.com/embed/q6iY9DHOeCg?modestbranding=0&rel=0&autoplay=1&controls=0&showinfo=1&autohide=1" frameborder="0" allowfullscreen></iframe>');
+        }, 1000);
+        break;
+      default:
+        if (g == 1 && v.length > 5) {
+          l.after('<li>WHAT A STRANGE GAME.');
+          t.text('');
+        }
+        if (g == 0 && v.length > 3) {
+          l.after('<li> Hey! Your answer is very complex, just answer with,<br> yes / no');
+          t.text('');
+        }
+        break;
+    }
+  });
+  
+  let randomTextInterval;
+  let randomText = "";
+  
+  function generateRandomText() {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";
+    let result = "";
+    for (let i = 0; i < 30; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters[randomIndex];
+    }
+    return result;
+  }
+  
+  function startRandomText() {
+    randomTextInterval = setInterval(function() {
+      randomText = generateRandomText();
+      $('li').text(randomText);
+    }, 100);
+  }
+  
+  function startBlinking() {
+    let blinkCount = 0;
+    const blinkInterval = setInterval(function() {
+      $('body').toggleClass('blink-background');
+      blinkCount++;
+  
+      if (blinkCount >= 4) {
+        clearInterval(blinkInterval);
+        $('body').removeClass('blink-background');
+        startCountdown();
+      }
+    }, 500);
+  }
+  
+  function startCountdown() {
+    countdownInterval = setInterval(function() {
+      $('li').text(countdownValue);
+      countdownValue--;
+      if (countdownValue < 0) {
+        clearInterval(countdownInterval);
+      
+
+
+
+        const newLevel = 3; // Define o novo nível
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    console.log("Nível do usuário atualizado para", newLevel);
+                    // Redireciona para a nova página do site
+                    window.location.href = "index1.html";
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
+                window.location.href = "index1.html";
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+
+
+      
+      }
+    }, 1000);
+  }
+  
+  function startCountdownToRedirect() {
+    let countdownValueRedirect = 3;
+    const countdownIntervalRedirect = setInterval(function() {
+      $('li').text(countdownValueRedirect);
+      countdownValueRedirect--;
+      if (countdownValueRedirect < 0) {
+        clearInterval(countdownIntervalRedirect);
+     
+        const newLevel = 3; // Define o novo nível
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    console.log("Nível do usuário atualizado para", newLevel);
+                    // Redireciona para a nova página do site
+                    window.location.href = "index1.html";
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
+                window.location.href = "index1.html";
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+
+      }
+    }, 1000);
+  }
+  
+  setInterval(function() {
+    $('.blink').toggleClass("blinker");
+    i++;
+    if (i == 6)
+      clearInterval(b);
+  }, 400);
+  
+  $(window).on('load', addNoise);
+  
+  function addNoise() {
+    $('.loader').text('');
+    $('.noise-wrapper').css('opacity', 1);
+  }
+  
+  const messages = [
+    "Congratulations on getting this far, but huh from now the things are going to get a little more complex. Would you like to play a game?",
+  ];
+  
+  const typingContainer = document.getElementById("typing-container");
+  
+  function typeMessage(message, index, delay) {
+    if (index < message.length) {
+      typingContainer.textContent = message.substring(0, index + 1);
+      setTimeout(() => {
+        typeMessage(message, index + 1, delay);
+      }, delay);
+    }
+  }
+  
+  function startTyping() {
+    typingContainer.textContent = "";
+    messages.forEach((message, index) => {
+      setTimeout(() => {
+        typeMessage(message, 0, 50);
+      }, index * 4000);
+    });
+  }
+  
+  $('span').click();
+  startTyping();
+  
+
+
+
+</script>
+<script>
+function hint() {
+var toast = document.getElementById("errorToast");
+toast.classList.add("show-toast");
+setTimeout(function(){
+toast.classList.remove("show-toast");
+}, 3000); 
+}
+</script>
+
+
+</body>
+</html>

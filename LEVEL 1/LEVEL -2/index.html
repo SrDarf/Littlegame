@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css.css">
+<link rel="stylesheet" href="css2.css">
+<title>Federation | Login</title>
+</head>
+
+
+
+<body id="body" oncontextmenu="return false">
+
+
+   <div class="black hidden">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+   </div>
+
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+        <!-- Ícone de saída (canto esquerdo) -->
+        <a href="/GENERIC LOGIN THING/index.html" style="color: white; margin: 1rem;">
+            <i class="fa fa-sign-out out" aria-hidden="true"></i>
+        </a>
+    
+<center> <center><i class="fa-solid fa-terminal" onclick="mostrarTerminal()" style="border: 1px solid white; padding: 5px ; border-radius: 8px; transition: 0.5s ease ; cursor: pointer; margin: 1rem;"></i></center>   </center>
+
+
+
+        <!-- Ícone de dúvida (canto direito) -->
+        <a href="#" id="question" onclick="hint()" style="color: white; margin: 1rem;">
+            <i class="fa-solid fa-question inu" aria-hidden="true"></i>
+        </a>
+    </header>
+    
+
+    <div class="toast" id="errorToast">This is a Level Selector <br> have you ever played an videogame?</div>
+    <div class="stars-bg">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+
+
+
+    <div class="" id="terminal9208" style="opacity: 0 ; z-index: -1;">
+
+
+        <center><div class="fakeMenu">
+            <div onclick="mostrarTerminal()" class="fakeButtons fakeClose"></div>
+            <div onclick="mostrarTerminal()" class="fakeButtons fakeMinimize"></div>
+            <div onclick="mostrarTerminal()" class="fakeButtons fakeZoom"></div>
+          </div></center>
+          <div class="fakeScreen">
+            <p class="line1">Hey! It seems like you have access to the console! <span class="cursor1"></span></p>
+            <p class="line2">That looks very great, please follow the commands above: <span class="cursor2"></span></p>
+            <p class="line3"><br> 
+                <span style="color: rgb(0, 247, 255);"> Skip: Type this command to skip to any level | Ex: skip 5   </span> <br>
+                Print: Print something here | Ex: print abobora <br>
+                Calc: Make a mathematical equation | Ex: calc 1 * 99 <br>
+               Exit: Type this to exit the console <br>
+              <br>
+              <br><input style="opacity: 0.5;" type="text" id="commandInput" placeholder=">_"></span>
+            </p>
+            <p>
+              <span id="reply"></span>
+            </p>
+          </div>
+          
+    
+     </div>
+
+
+    <div class="container" id="container">
+        <div class="logo">
+            <center><img src="/images/image.png" alt="Logo"></center>
+        </div>
+
+        <h1>
+       <center><a class="hover" href="/LEVEL 1/index.html" style="color: white; text-decoration: none;">Chapter 1</a></center> 
+        </h1>
+    
+        <div class="fases container1">
+            <div class="fase blocked1 1" onclick="redirect(this)">Level 1</div>
+            <div class="fase blocked2 2" onclick="redirect(this)">Level 2</div>
+            <div class="fase blocked3 3" onclick="redirect(this)">Level 3</div>
+            <div class="fase blocked4 4" onclick="redirect(this)">Level 4</div>
+            <div class="fase blocked5 5" onclick="redirect(this)">Level 5</div>
+            <div class="fase blocked6 6" onclick="redirect(this)">Level 6</div>
+            <div class="fase blocked7 7" onclick="redirect(this)">Level 7</div>
+            <div class="fase blocked8 8" onclick="redirect(this)">Level 8</div>
+            <div class="fase blocked9 " onclick="redirect(this)">Level 9</div>
+            <div class="fase blocked10 " onclick="redirect(this)">Level 10</div>            
+        </div>
+       
+    </div>
+
+    <!-- <div class="arrow" style="margin:1rem;" onclick="toggleContainers()"><i class="fa-solid fa-arrow-right"></i></div> -->
+
+
+
+<script>
+// Define uma variável global para rastrear o estado do terminal
+let terminalVisivel = false;
+
+// Função para mostrar ou esconder o terminal
+function mostrarTerminal() {
+    const terminal = document.getElementById('terminal9208');
+    
+    // Se o terminal estiver visível, oculta-o
+    if (terminalVisivel) {
+        terminal.style.opacity = 0;
+        terminal.style.zIndex = -1;
+        terminalVisivel = false;
+    } else { // Se o terminal estiver oculto, mostra-o
+        terminal.style.opacity = 1;
+        terminal.style.zIndex = 1;
+        terminalVisivel = true;
+    }
+}
+
+document.getElementById('terminal9208').addEventListener('click', alternarTerminal);
+
+</script>
+
+<script>   
+
+function showBlackDiv() {
+    // Seleciona todos os elementos com a classe 'black'
+    const blackDivs = document.querySelectorAll('.black');
+
+    // Itera sobre cada elemento com a classe 'black'
+    blackDivs.forEach(div => {
+        // Remove a classe 'hidden' para tornar o elemento visível
+        div.classList.remove('hidden');
+
+        // Espera 1 segundo antes de criar o elemento h1 dentro da div
+        setTimeout(() => {
+            const h1 = document.createElement('h1');
+            h1.textContent = 'Chapter 1';
+            h1.style.color = 'white'; // Definindo a cor do texto como branco
+            h1.style.opacity = 1; // Definindo a opacidade como 1
+            div.appendChild(h1);
+        }, 2500);
+
+        // Espera 1.5 segundos antes de criar o elemento p dentro da div
+        setTimeout(() => {
+            const p = document.createElement('p');
+            p.textContent = 'Good luck :D';
+            p.style.color = 'white'; // Definindo a cor do texto como branco
+            p.style.opacity = 1; // Definindo a opacidade como 1
+            div.appendChild(p);
+        }, 4000);
+        setTimeout(function() {
+            window.location.href = '/LEVEL 1/LEVEL 2/index.html'
+        }, 6000); // 3000 milliseconds = 3 seconds
+
+    });
+}
+
+
+</script>
+
+
+
+<script>
+       window.onload = function() {
+    var elements = document.querySelectorAll('*'); // Seleciona todos os elementos da página
+    elements.forEach(function(element) {
+        element.classList.add('show2'); // Adiciona a classe 'show' a cada elemento
+    });
+};
+</script>
+
+
+
+<script>
+function runStaticAnimation() {
+    const body = document.body;
+    if (body) {
+     
+        body.classList.add("static-animation");
+
+        setTimeout(() => {
+            body.classList.remove("static-animation");
+        }, 1000); 
+    }
+}
+</script>
+
+
+<script>
+    document.getElementById('commandInput').addEventListener('input', function(event) {
+    // Captura o valor digitado no input
+    var command = this.value.trim().toLowerCase();
+    // Coloca o valor digitado dentro do span cursor3
+    document.getElementById('commandValue').textContent = command;
+  });
+</script>
+
+
+<script>
+
+
+</script>
+    
+
+
+<script>
+    function hint() {
+    var toast = document.getElementById("errorToast");
+    toast.classList.add("show-toast");
+    setTimeout(function(){
+        toast.classList.remove("show-toast");
+    }, 3000); // 3000 milissegundos = 3 segundos
+}
+</script>
+
+<script src="toast.js"></script>
+<!-- firebase -->
+
+<a href=""></a>
+
+<script src="https://kit.fontawesome.com/bef417f226.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAwIY0tol3DjhSdDRdZGUQVU5TsiqWBhwM",
+      authDomain: "the-void-1b86a.firebaseapp.com",
+      projectId: "the-void-1b86a",
+      storageBucket: "the-void-1b86a.appspot.com",
+      messagingSenderId: "629518131133",
+      appId: "1:629518131133:web:6a1617370f0829e089bcd4"
+    };
+
+firebase.initializeApp(firebaseConfig)
+ 
+ if(firebase.app().options.apiKey === firebaseConfig.apiKey) {
+     console.log('Database conectada com sucesso');
+ } else {
+     console.error('Erro ao conectar ao Firebase');
+     location.reload();
+ }
+
+
+ // Verifica se as credenciais do usuário existem no banco de dados Firestore
+const db = firebase.firestore();
+const usersRef = db.collection('users');
+
+let userData; // Declare a global variable to store userData
+let admin = false
+
+const userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
+const { username, password } = userCredentials;
+
+usersRef.doc(username).get().then(doc => {
+    if (doc.exists) {
+        userData = doc.data(); // Assign userData
+        if (userData.password === password) {
+            console.log("Credenciais válidas. Usuário autenticado com sucesso.");
+
+            // Verificar se o usuário tem o campo 'level'
+            if (userData.level === undefined) {
+                // Se não tiver, criar e definir como 1
+                usersRef.doc(username).update({ level: 1 })
+                    .then(() => {
+                        console.log("Nível do usuário definido como 1.");
+                        bloquearFases(1);
+                    })
+                    .catch(error => {
+                        console.error("Erro ao definir o nível do usuário:", error);
+                    });
+            } else {
+                console.log("Nível do usuário:", userData.level);
+                bloquearFases(userData.level);
+            }
+
+            // Verificar se o usuário tem o campo 'admin' e se é true
+            if (userData.admin === true) {
+                console.log("Usuário é um administrador.");
+                admin = true
+            } else {
+                console.log("Usuário não é um administrador.");
+            }
+        } else {
+            console.log("Senha incorreta. Por favor, verifique suas credenciais.");
+        }
+    } else {
+        console.log("Usuário não encontrado. Por favor, verifique suas credenciais.");
+    }
+}).catch(error => {
+    console.error("Erro ao verificar credenciais:", error);
+});
+
+
+
+function redirect(element) {
+    // Verifica se a classe contém 'blocked'
+    if (element.classList.contains('blocked')) {
+        // Se contiver, não redirecione
+        return;
+    }
+
+    // Obtém a classe da div clicada
+    var classe = element.classList[2];
+    
+    // Redireciona com base na classe
+    switch (classe) {
+        case '1':
+            if (userData.level === 1) {
+                showBlackDiv()
+            }
+            if (userData.level > 1){
+                window.location.href = "/LEVEL 1/LEVEL 2/index.html"
+            }
+            break;
+        case '2':
+            window.location.href = '/LEVEL 1/LEVEL 2/LEVEL 3/index.html';
+            break;
+        case '3':
+            window.location.href = '/LEVEL 1/LEVEL 2/LEVEL 3/index1.html';
+            break;
+        case '4':
+            window.location.href = '/LEVEL 1/LEVEL 2/LEVEL 3/LEVEL 4/index.html';
+            break;
+        case '5':
+            window.location.href = '/LEVEL 1/LEVEL 2/LEVEL 3/LEVEL 4/LEVEL -5/index.html';
+            break;
+        case '6':
+            window.location.href = '/LEVEL 1/LEVEL 2/LEVEL 3/LEVEL 4/LEVEL 5/index.html';
+            break;
+        case '7':
+            window.location.href = '/LEVEL 1/LEVEL 2/LEVEL 3/LEVEL 4/LEVEL 5/LEVEL 6/index.html';
+            break;
+        case '8':
+            window.location.href = '/LEVEL 1/LEVEL 2/LEVEL 3/LEVEL 4/LEVEL 5/LEVEL 6/LEVEL 7/index1.html';
+            break;
+        case '9':
+            window.location.href = 'pagina9.html';
+            break;
+        case '10':
+            window.location.href = 'pagina10.html';
+            break;
+        default:
+            // Redireciona para uma página padrão se a classe não corresponder a nenhum caso
+            window.location.href = '/LEVEL 1/LEVEL 2/index.html';
+            break;
+    }
+}
+
+
+function bloquearFases(level) {
+    const fases = document.querySelectorAll('.fases .fase');
+    fases.forEach(fase => {
+        const match = fase.className.match(/blocked(\d+)/);
+        if (match) {
+            const numero = parseInt(match[1]);
+            if (numero > level) {
+                fase.innerHTML = `<i style="color:white; pointer-events: none; opacity:1;" class="fa-solid fa-lock"></i>`;
+                fase.classList.add('disabled');
+            }
+        }
+    });
+}
+
+
+document.getElementById('commandInput').addEventListener('keyup', function(event) {
+    // Verifica se a tecla pressionada é 'Enter'
+    if (event.keyCode === 13) {
+        // Captura o valor digitado no input
+        var userInput = document.getElementById('commandInput').value.trim().toLowerCase();
+        // Lógica para lidar com os comandos
+        var reply = document.getElementById('reply');
+        var command = userInput.split(' ')[0]; // Extrai o comando digitado
+        var textToDisplay = userInput.substring(command.length + 1); // Extrai o texto após o comando
+
+        switch (command) {
+            case 'exit':
+                reply.textContent = 'Saindo do console...';
+                // Executa a função mostrarTerminal após um pequeno atraso para mostrar a mensagem de 'Saindo do console...'
+                setTimeout(function() {
+                    mostrarTerminal();
+                }, 1000);
+                break;
+            case 'skip':
+                if(admin){
+                    
+                    
+
+
+
+
+                    var newLevel = parseInt(textToDisplay);
+if (!isNaN(newLevel)) {
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    reply.innerHTML = ("Alright! Your new Level is " + newLevel+"! <br> Type 'menu' to skip this level and go to the selection menu");
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                reply.textContent = ("Your actual level is alweady higher than " + newLevel);
+        
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+}
+
+
+
+
+
+
+
+
+                }else{
+                    reply.textContent = 'You need to have Full Acess permissions to do this';
+                    
+                }
+         
+                // Lógica criativa para lidar com o comando 'skip'
+                break;
+            case 'print':
+                reply.textContent = textToDisplay; // Exibe o texto digitado após o comando "print"
+                break;
+             
+            case 'calc':
+                // Tenta avaliar a expressão matemática fornecida pelo usuário
+                try {
+                    var result = eval(textToDisplay); // Avalia a expressão matemática
+                    reply.textContent = 'Result: ' + result; // Exibe o resultado da expressão
+                } catch (error) {
+                    reply.textContent = 'Failed to calc! Please Verify your sintaxe.'; // Em caso de erro na expressão
+                }
+                break;
+
+                case 'menu':
+                // Tenta avaliar a expressão matemática fornecida pelo usuário
+                try {
+                   reply.textContent = 'Você já está nessa pagina!'
+                } catch (error) {
+                    mostrarTerminal();
+                }
+                break;
+                
+                
+
+
+
+            default:
+                reply.textContent = 'Comando não reconhecido.';
+                break;
+        }
+        // Limpa o input após pressionar 'Enter'
+        document.getElementById('commandInput').value = '';
+    }
+});
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+<script>
+    const eyeIcon = document.getElementById('eyeIconId');
+        const passwordInput = document.getElementById('password');
+        eyeIcon.addEventListener('click', togglePasswordVisibility);
+    
+        const confirmEyeIcon = document.getElementById('confirmEyeIconId');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        confirmEyeIcon.addEventListener('click', toggleConfirmPasswordVisibility);
+    
+        function togglePasswordVisibility() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    
+        function toggleConfirmPasswordVisibility() {
+            if (confirmPasswordInput.type === 'password') {
+                confirmPasswordInput.type = 'text';
+                confirmEyeIcon.classList.remove('fa-eye');
+                confirmEyeIcon.classList.add('fa-eye-slash');
+            } else {
+                confirmPasswordInput.type = 'password';
+                confirmEyeIcon.classList.remove('fa-eye-slash');
+                confirmEyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
+
+<script>
+
+var mynameSpan = document.getElementById("myname");
+
+if (userCredentials && userCredentials.username) {
+    mynameSpan.textContent = userCredentials.username;
+} else {
+    mynameSpan.textContent = "Usuário Desconhecido";
+}
+
+</script>
+
+
+</body>
+</html>

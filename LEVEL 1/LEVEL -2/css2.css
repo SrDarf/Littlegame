@@ -1,0 +1,291 @@
+.fases {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colunas para 5 fases por linha */
+    gap: 10px; /* Espaçamento entre as fases */
+    text-align: center;
+    align-items: center;
+
+}
+
+.fase {
+    border-radius: 8px; /* Bordas arredondadas */
+    width: 40%;
+    background-color: black;
+    padding: 10%; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+    transition: background-color 0.3s; /* Transição suave de cor ao passar o mouse */
+    transition: 0.5s ease;
+}
+
+.fase:hover {
+    background: #0000009a; /* Cor de fundo mais escura no hover */
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.blocked{
+    cursor:s-resize;
+ 
+}
+
+.disabled{
+    pointer-events: none;
+}
+
+header {
+    background-color: rgba(5, 5, 5, 0.719);
+    color: #fff;
+    padding: 10px 20px;
+    height: 8%;
+    display: flex;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 999; /* Para garantir que o cabeçalho fique sobre outros elementos */
+}
+
+.arrow{
+    transition: 0.5s ease;
+}
+
+.arrow:hover{
+    transform: scale(1.2);
+}
+
+.hidden{
+    position: absolute;
+}
+
+
+
+.black{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    opacity: 1;
+    z-index: 9123912931923912391391293;
+    transition: all 3s ease;
+    text-align: center;
+    
+}
+
+.black p h1{
+    position: absolute;
+    opacity: 1;
+    color: white;
+}
+
+.black.hidden{
+    opacity: 0;
+    z-index: -2;
+}
+
+.myname {
+    transition: all 0.5s ease;
+}
+
+.myname:hover{
+    font-size: large;
+    color: aqua;
+}
+
+
+
+.in {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    width: 80%;
+    opacity: 0;
+  }
+  
+  
+  @keyframes fadeOut {
+      from {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      to {
+          opacity: 0;
+          transform: translateY(-20px);
+      }
+  }
+  
+  #terminal9208 {
+      opacity: 1;
+      transform: translateY(-20px);
+      position: absolute;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  #terminal9208.visible {
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeIn 0.5s ease;
+  }
+  
+  #terminal9208.abobrinha {
+      opacity: 0;
+      transition: 0.5s ease;
+      transform: translateY(-20px);
+      animation: fadeOut 0.5s ease;
+      animation-fill-mode: forwards;
+  }
+
+  .fakeMenu {
+    width: 50%;
+    height: 30px;
+    background-color: #333 ;
+    padding: 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+  }
+
+  .fakeButtons {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+
+    margin-right: 5px;
+  }
+
+  .fakeClose {
+    background-color: #ff5f56;
+    transition: 0.5s;
+  }
+
+  .fakeMinimize {
+    background-color: #ffbd2e;
+    transition: 0.5s;
+  }
+
+  .fakeZoom {
+    background-color: #27c93f;
+    transition: 0.5s;
+  }
+
+  .fakeClose:hover,
+  .fakeMinimize:hover,
+  .fakeZoom:hover {
+    transform: scale(2);
+    cursor: crosshair;
+  }
+  
+
+  .fakeScreen {
+    width: 50vw;
+    margin: 20px auto;
+    background-color: #111;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-height: 200px;
+    overflow-y: auto;
+  }
+
+  .line1, .line2, .line3, .line4 {
+    margin: 5px 0;
+  }
+
+  .cursor1, .cursor2, .cursor3, .cursor4 {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  input[type="text"] {
+    width: calc(100% - 20px);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    padding: 5px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  input[type="text"]:focus {
+    border-bottom: 1px solid #27c93f;
+  }
+
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.in {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #fff;
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+  width: 80%;
+  opacity: 0;
+}
+
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+#terminal {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#terminal.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeIn 0.5s ease;
+}
+
+#terminal.abobrinha {
+    opacity: 0;
+    transition: 0.5s ease;
+    transform: translateY(-20px);
+    animation: fadeOut 0.5s ease;
+    animation-fill-mode: forwards;
+}
+
+.hover{
+    transition: 0.5s ease;
+}
+
+.hover:hover{
+    font-size: larger;
+}

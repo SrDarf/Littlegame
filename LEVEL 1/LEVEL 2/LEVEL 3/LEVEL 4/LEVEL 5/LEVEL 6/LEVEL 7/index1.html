@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's not the end</title>
+</head>
+<body>
+    <div class="stars-bg">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+      </div>
+      <div class="overlay">
+
+
+        
+
+
+      </div>
+
+      <div class="things">
+        
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/1.png" alt="Event 1">
+                </div>
+                <div class="timeline-text">
+                    <h2>The Beginning Level 0</h2>
+                    <p>Haha much more interesting than a cryptocurrency website, don't you think?</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/2.png" alt="Event 2">
+                </div>
+                <div class="timeline-text">
+                    <h2>Level 1</h2>
+                    <p>Surely you didn't take more than 5 minutes on this one, right?</p>
+                </div>
+            </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/3.png" alt="Event 2">
+                </div>
+                <div class="timeline-text">
+                    <h2>Level 2</h2>
+                    <p>This page really gave a lot of errors while I was making it...</p>
+                </div>
+            </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/5.png" alt="Event 2">
+                </div>
+                <div class="timeline-text">
+                    <h2>Level 3</h2>
+                    <p>Have you tried writing "No"?</p>
+                </div>
+            </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/4.png" alt="Event 2">
+                </div>
+                <div class="timeline-text">
+                    <h2>Level 4</h2>
+                    <p>I didn't want to say anything, but this is my favorite level :></p>
+                </div>
+            </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/6.png" alt="Event 2">
+                </div>
+                <div class="timeline-text">
+                    <h2>Level 5</h2>
+                    <p>Do you like chess?</p>
+                </div>
+            </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/7.png" alt="Event 2">
+                </div>
+                <div class="timeline-text">
+                    <h2>Level 6</h2>
+                    <p>Okay, this one was pretty easy</p>
+                </div>
+            </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/8.png" alt="Event 2">
+                </div>
+                <div class="timeline-text">
+                    <h2>Level 7</h2>
+                    <p>Okay, this one was pretty hard, did you skip this one?</p>
+                </div>
+            </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/9.png" alt="Event 2">
+                </div>
+                <div class="timeline-text">
+                    <h2>Level 8</h2>
+                    <p>Finally, the light mode was useful for something :D</p>
+                </div>
+            </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-image">
+                    <img src="images/10.png" alt="Event 2">
+                </div>
+                <div class="timeline-text">
+                    <h2>End?</h2>
+                    <p>Thank you very very much for getting here, I sincerely hope you enjoyed it. Making this website was a great thing for my learning, and I improved A LOT in JavaScript, of course with the help of about 54 YouTube tutorials but it worked <br>♥ - Marcos Vinicius</p>
+                </div>
+            </div>
+        </div>
+        
+       
+       
+       
+       
+        </div>
+
+        <div class="game-container">
+            <div class="character" id="character"> <i class="fas fa-chevron-up"></i></div>
+            <div class="special"></div>
+        </div>
+
+        <audio id="myAudio" src="songs/gravity.mp3"></audio>
+        <button id="playButton" style="display: none;">Iniciar Reprodução</button>
+
+
+    <script src="script1.js"></script>
+
+
+
+
+    <script src="https://kit.fontawesome.com/bef417f226.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyAwIY0tol3DjhSdDRdZGUQVU5TsiqWBhwM",
+        authDomain: "the-void-1b86a.firebaseapp.com",
+        projectId: "the-void-1b86a",
+        storageBucket: "the-void-1b86a.appspot.com",
+        messagingSenderId: "629518131133",
+        appId: "1:629518131133:web:6a1617370f0829e089bcd4"
+      };
+    
+    firebase.initializeApp(firebaseConfig)
+    
+    if(firebase.app().options.apiKey === firebaseConfig.apiKey) {
+       console.log('Database conectada com sucesso');
+    } else {
+       console.error('Erro ao conectar ao Firebase');
+       location.reload();
+    }
+    
+    
+    const db = firebase.firestore();
+    const usersRef = db.collection('users');
+    let win = false; 
+    
+    let userData;
+    
+    
+    const userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
+    const { username, password } = userCredentials;
+    
+    usersRef.doc(username).get().then(doc => {
+        if (doc.exists) {
+            userData = doc.data();
+            if (userData.password === password) {
+                console.log("Credenciais válidas. Usuário autenticado com sucesso.");
+
+                
+
+    
+                if (userData.level < 7){
+                window.location.href = '/403.html'
+                }
+            
+                
+    
+            } else {
+                console.log("Senha incorreta. Por favor, verifique suas credenciais.");
+            }
+        } else {
+            console.log("Usuário não encontrado. Por favor, verifique suas credenciais.");
+        }
+    }).catch(error => {
+        console.error("Erro ao verificar credenciais:", error);
+    });
+    
+
+
+    const character = document.getElementById('character');
+const gameContainer = document.querySelector('.game-container');
+let characterX = 0;
+let characterY = 0;
+const moveSpeed = 20;
+let movingUp = false;
+let movingDown = false;
+let movingLeft = false;
+let movingRight = false;
+let characterDirection = 'up';
+
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
+
+const windowCenterX = windowWidth / 2;
+const windowCenterY = windowHeight / 2;
+
+const marginX = windowWidth * 0.2;
+const marginY = windowHeight * 0.2;
+
+function updateCharacterPosition() {
+    character.style.transform = `translate(${characterX}px, ${characterY}px)`;
+}
+
+function moveCharacter() {
+    if (movingUp && characterY > 0) {
+        characterY -= moveSpeed;
+        characterDirection = 'up';
+    }
+    if (movingDown && characterY < gameContainer.clientHeight - character.clientHeight) {
+        characterY += moveSpeed;
+        characterDirection = 'down';
+    }
+    if (movingLeft && characterX > 0) {
+        characterX -= moveSpeed;
+        characterDirection = 'left';
+    }
+    if (movingRight && characterX < gameContainer.clientWidth - character.clientWidth) {
+        characterX += moveSpeed;
+        characterDirection = 'right';
+    }
+
+    updateCharacterPosition();
+
+    const arrow = character.querySelector('i');
+    arrow.className = `fas fa-chevron-${characterDirection}`;
+
+    updateCameraPosition();
+
+    if ((characterX / gameContainer.clientWidth) * 100 >= 88) {
+        const overlay = document.querySelector('.overlay');
+        overlay.style.opacity = 1; 
+        overlay.style.pointerEvents = 'auto'; 
+        setTimeout(function(){
+      
+  
+  
+// Espera 1 segundo antes de executar o código
+setTimeout(() => {
+    // Cria um novo elemento de texto para o Chapter 1
+    const newText1 = document.createElement('div');
+    newText1.innerText = "Chapter 1 END";
+    newText1.style.position = "absolute";
+    newText1.style.top = "50%";
+    newText1.style.left = "50%";
+    newText1.style.fontFamily = "monospace";
+    newText1.style.transform = "translate(-50%, -50%)";
+    newText1.style.textAlign = "center";
+    newText1.style.color = "white";
+    newText1.style.fontSize = "24px";
+    
+    // Adiciona o texto do Chapter 1 à div com a classe overlay
+    const overlay = document.querySelector('.overlay');
+    overlay.appendChild(newText1);
+
+    // Aguarda mais 2 segundos antes de adicionar o segundo texto
+    setTimeout(() => {
+        // Cria um novo elemento de texto para o Chapter 2
+        const newText2 = document.createElement('div');
+        newText2.innerText = "Chapter 2 Unlocked";
+        newText2.style.position = "absolute";
+        newText2.style.top = "60%"; // Posição ajustada para baixo
+        newText2.style.left = "50%";
+        newText2.style.fontFamily = "monospace";
+        newText2.style.transform = "translate(-50%, -50%)";
+        newText2.style.textAlign = "center";
+        newText2.style.color = "white";
+        newText2.style.fontSize = "18px"; // Tamanho da fonte ajustado
+
+        // Adiciona o texto do Chapter 2 à div com a classe overlay
+        overlay.appendChild(newText2);
+    }, 2000); // Aguarda 2 segundos antes de adicionar o segundo texto
+}, 1000); // Espera 1 segundo (1000 milissegundos) antes de adicionar o primeiro texto
+
+
+
+
+setTimeout(() => {
+const newLevel = 8; // Define o novo nível
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    console.log("Nível do usuário atualizado para", newLevel);
+                    // Redireciona para a nova página do site
+                    window.location.href = "/LEVEL 1/LEVEL -2/index.html";
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
+                window.location.href = "/LEVEL 1/LEVEL -2/index.html";
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+    }, 4000);
+
+
+        }, 5000);        
+    }
+
+    requestAnimationFrame(moveCharacter);
+}
+
+function updateCameraPosition() {
+    const scrollX = characterX - windowCenterX + character.clientWidth / 2;
+    const scrollY = characterY - windowCenterY + character.clientHeight / 2;
+
+    window.scrollTo(
+        Math.min(Math.max(scrollX, 0), gameContainer.clientWidth - windowWidth + marginX),
+        Math.min(Math.max(scrollY, 0), gameContainer.clientHeight - windowHeight + marginY)
+    );
+}
+
+document.addEventListener('keydown', (event) => {
+    const key = event.key.toLowerCase();
+
+    switch (key) {
+        case 'w':
+        case 'arrowup':
+            movingUp = true;
+            break;
+        case 's':
+        case 'arrowdown':
+            movingDown = true;
+            break;
+        case 'a':
+        case 'arrowleft':
+            movingLeft = true;
+            break;
+        case 'd':
+        case 'arrowright':
+            movingRight = true;
+            break;
+    }
+});
+
+document.addEventListener('keyup', (event) => {
+    const key = event.key.toLowerCase();
+
+    switch (key) {
+        case 'w':
+        case 'arrowup':
+            movingUp = false;
+            break;
+        case 's':
+        case 'arrowdown':
+            movingDown = false;
+            break;
+        case 'a':
+        case 'arrowleft':
+            movingLeft = false;
+            break;
+        case 'd':
+        case 'arrowright':
+            movingRight = false;
+            break;
+    }
+});
+
+updateCharacterPosition();
+moveCharacter();
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var audio = document.getElementById("myAudio");
+    var playButton = document.getElementById("playButton");
+
+    function simulateButtonClick() {
+        var event = new MouseEvent("click", {
+            bubbles: true,
+            cancelable: true,
+            view: window
+        });
+        playButton.dispatchEvent(event);
+    }
+
+  
+    setTimeout(simulateButtonClick, 100);
+    
+    playButton.addEventListener("click", function() {
+     
+        var promise = audio.play();
+
+        if (promise !== undefined) {
+            promise.then(function() {
+          
+            }).catch(function(error) {
+           
+                console.error("Erro ao reproduzir áudio: " + error);
+            });
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

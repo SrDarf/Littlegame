@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title id="title">Loading...</title>
+</head>
+<body class="glitch">
+
+
+
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+      
+
+
+
+        <a href="/GENERIC LOGIN THING/index.html" style="color: white; margin: 1rem;">
+            <i class="fa fa-sign-out out" aria-hidden="true"></i>
+        </a>
+    
+<center>  <a href="/LEVEL 1/LEVEL -2/index.html" style="color: white;"><i class="fa-solid fa-house"> </i></a>  </center>
+
+    
+        <a href="#" id="question" onclick="hint()" style="color: white; margin: 1rem;">
+            <i class="fa-solid fa-question inu" aria-hidden="true"></i>
+        </a>
+    </header>
+
+    <div class="console" style="color: rgb(17, 238, 17);"><p>C:\</p>
+    </div>
+    
+    <div class="container">
+        <h1 id="loading">Loading</h1>
+        <div class="container2">
+            <div class="loading"></div> 
+            <h1 id="animated-heading">0%</h1>
+        </div>
+    </div>
+
+    <div class="glow"></div>
+    <div class="glow2"></div>
+   
+
+
+    <audio id="audio" autoplay loop>
+        <source src="audio/thevoid.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="black ">
+
+    
+    
+    </div>
+
+
+    <script src="script.js"></script>
+
+
+
+    <script>
+               window.onload = function() {
+                    var elements = document.querySelectorAll('.black'); 
+                    elements.forEach(function(element) {
+                        element.classList.add('hidden'); 
+                    });
+                };
+    </script>
+
+
+
+
+<!-- PASSWORD_BEFORE_INVERSION = 1212 -->
+
+<div class="toast" id="errorToast">Press: Control + U and search for the line with the error</div>
+<script src="script2.js"></script>
+<script src="https://kit.fontawesome.com/bef417f226.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+   
+   const firebaseConfig = {
+    apiKey: "AIzaSyAwIY0tol3DjhSdDRdZGUQVU5TsiqWBhwM",
+    authDomain: "the-void-1b86a.firebaseapp.com",
+    projectId: "the-void-1b86a",
+    storageBucket: "the-void-1b86a.appspot.com",
+    messagingSenderId: "629518131133",
+    appId: "1:629518131133:web:6a1617370f0829e089bcd4"
+  };
+
+firebase.initializeApp(firebaseConfig)
+
+if(firebase.app().options.apiKey === firebaseConfig.apiKey) {
+   console.log('Database conectada com sucesso');
+} else {
+   console.error('Erro ao conectar ao Firebase');
+   location.reload();
+}
+
+
+const db = firebase.firestore();
+const usersRef = db.collection('users');
+let win = false; 
+
+let userData;
+
+
+const userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
+const { username, password } = userCredentials;
+
+usersRef.doc(username).get().then(doc => {
+    if (doc.exists) {
+        userData = doc.data();
+        if (userData.password === password) {
+            console.log("Credenciais válidas. Usuário autenticado com sucesso.");
+
+            if (userData.level < 1){
+            window.location.href = '/403.html'
+            }
+        
+            
+
+        } else {
+            console.log("Senha incorreta. Por favor, verifique suas credenciais.");
+        }
+    } else {
+        console.log("Usuário não encontrado. Por favor, verifique suas credenciais.");
+    }
+}).catch(error => {
+    console.error("Erro ao verificar credenciais:", error);
+});
+
+
+console.log(win);
+
+
+let isAlternate = false;
+let isFirstAlternate = true;
+
+function animateLoadingText() {
+    const loadingText = document.getElementById("loading");
+    const originalText = loadingText.textContent;
+
+    if (isAlternate && isFirstAlternate) {
+        loadingText.textContent = originalText + " .";
+        isFirstAlternate = false;
+    } else {
+        loadingText.textContent = originalText + " ";
+    }
+
+    isAlternate = !isAlternate;
+
+    setTimeout(() => {
+        loadingText.textContent = originalText + " ..";
+        setTimeout(() => {
+            loadingText.textContent = originalText + " ...";
+            setTimeout(() => {
+                loadingText.textContent = originalText;
+                animateLoadingText();
+            }, 500);
+        }, 500);
+    }, 500);
+}
+
+
+animateLoadingText();
+
+
+function animatePercentage() {
+    let currentPercentage = 0;
+    const targetPercentage = 75;
+    const increment = targetPercentage / 670;
+
+    const animatedHeading = document.getElementById("animated-heading");
+
+    setTimeout(() => { 
+        const interval = setInterval(() => {
+            if (currentPercentage <= targetPercentage) {
+                animatedHeading.textContent = `${currentPercentage.toFixed(0)}%`;
+                currentPercentage += increment;
+            } else {
+                clearInterval(interval);
+               // Nova porcentagem do glitch
+                const percentElement = document.createElement("span");
+                percentElement.textContent = "let percentage = 75%";
+                percentElement.className = "animated-heading";
+                animatedHeading.parentNode.replaceChild(percentElement, animatedHeading);
+
+                alternateRandomChars();
+                alternateRandomColors();
+            }
+        }, 20); // Uns 2 segundos pra começar a animação
+    }, 2000); 
+}
+
+
+
+
+function alternateRandomChars() {
+    const loadingText = document.getElementById("loading");
+    const title = document.getElementById("title");
+    const characters = "inverso";
+    let showPassword = true;
+    let isFirstCycle = true;
+
+    setInterval(() => {
+        if (isFirstCycle) {
+            if (showPassword) {
+                loadingText.textContent = "Senha = 1212";
+                title.textContent = "inverso";
+            } else {
+                loadingText.textContent = "inverso";
+                title.textContent = "1212"; // Muda o titulo
+            }
+            showPassword = !showPassword;
+            isFirstCycle = false;
+        } else {
+            let randomText = '';
+            for (let i = 0; i < loadingText.textContent.length; i++) {
+                randomText += characters[Math.floor(Math.random() * characters.length)];
+            }
+            loadingText.textContent = randomText;
+        }
+    }, 3000); 
+}
+
+
+function alternateRandomColors() {
+    const loadingText = document.getElementById("loading");
+
+    setInterval(() => {
+        const randomShadow = `${Math.random() * 10}px ${Math.random() * 10}px ${Math.random() * 10}px rgba(255, 0, 0, 0.3)`;
+
+        loadingText.style.textShadow = randomShadow;
+    }, 2000); 
+}
+
+
+animateLoadingText();
+setTimeout(animatePercentage, 500);
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+        const consoleElement = document.querySelector(".console");
+        const maxLines = 9;
+        const targetLine = 76;
+        let currentLine = 0;
+        let interval;
+        let currentPercentage = 0;
+
+        function writeLine(text, style) {
+            const lineElement = document.createElement("p");
+            lineElement.textContent = text;
+            if (style) {
+                lineElement.style.color = style.color;
+                lineElement.style.textShadow = style.textShadow;
+            }
+            if (currentLine >= maxLines) {
+                consoleElement.removeChild(consoleElement.firstChild);
+            }
+            consoleElement.appendChild(lineElement);
+            currentLine++;
+            consoleElement.scrollTop = consoleElement.scrollHeight;
+
+            if (currentLine >= targetLine) {
+                clearInterval(interval);
+                if (currentLine === targetLine) {
+                    writeLine("C:/ Console Password");
+                    const inputElement = document.createElement("input");
+                    inputElement.classList.add("input");
+                    consoleElement.appendChild(inputElement);
+                }
+            }
+        }
+
+        function generateRandomCharacters(length) {
+            const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let result = "";
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                result += characters.charAt(randomIndex);
+            }
+            return result;
+        }
+
+        function startWriting() {
+            interval = setInterval(() => {
+                if (currentLine <= targetLine) {
+                    if (currentLine === 75) {
+                        const randomCharacters = generateRandomCharacters(20);
+                        writeLine(`PASSWORD ERROR AT LINE 75 | PLEASE CHECK THE SOURCE`, {
+                            color: "red",
+                            textShadow: "0 0 5px rgba(255, 0, 0, 0.5)"
+                        });
+                    } else {
+                        writeLine(`let percentage = ${currentLine}`);
+                    }
+                } else {
+                    clearInterval(interval);
+                }
+            }, 200);
+        }
+       
+        let is2121Entered = false; 
+
+        function handleCommand(inputValue) {
+            if (inputValue === "2121") {
+                is2121Entered = true; 
+                for (let i = 0; i < 5; i++) {
+                    consoleElement.removeChild(consoleElement.firstChild);
+                    currentLine--;
+                }
+                writeLine("C:/ Digite um comando");
+                const newInputElement = document.createElement("input");
+                newInputElement.classList.add("input");
+                consoleElement.appendChild(newInputElement);
+            } else if (is2121Entered && inputValue === "let percentage = 100") {
+                percentualSet = true;
+                writeLine("Set percentual to 100.");
+        
+                let countdown = 3;
+                const countdownInterval = setInterval(() => {
+                    if (countdown > 0) {
+                        writeLine(`Redirecting in ${countdown} seconds`);
+                        countdown--;
+                    } else {
+                        clearInterval(countdownInterval);
+
+                     const newLevel = 2; // Define o novo nível
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    console.log("Nível do usuário atualizado para", newLevel);
+                    // Redireciona para a nova página do site
+                    window.location.href = "LEVEL 3/index.html";
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
+                window.location.href = "LEVEL 3/index.html";
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+
+                 }
+                }, 1000);
+            } else if (percentualSet && inputValue === "") {
+                const animatedHeadingElement = document.getElementById("animated-heading");
+                animatedHeadingElement.textContent = "100%";
+                percentElement.textContent = "let percentage = 100%";
+                writeLine("Updated animated-heading and loading class.");
+            }
+        }
+        
+        
+
+        writeLine("DOM content Loaded = true");
+        writeLine("Confidencial Acess = Moderate");
+        writeLine("Login as Guest");
+        startWriting();
+
+        consoleElement.addEventListener("input", function (event) {
+            const input = event.target;
+            if (input.classList.contains("input")) {
+                handleCommand(input.value);
+            }
+        });
+    }, 2000);
+});
+
+var icon = document.getElementById("HIHIHI");
+
+
+icon.onclick = function() {
+   
+    var confirmacao = confirm("Tem certeza que quer pular de fase?");
+    
+   
+    if (confirmacao) {
+        window.location.href = "LEVEL 3/index.html"; 
+    }
+};
+
+
+
+
+
+
+
+</script>
+<script>
+      function hint() {
+    var toast = document.getElementById("errorToast");
+    toast.classList.add("show-toast");
+    setTimeout(function(){
+        toast.classList.remove("show-toast");
+    }, 3000); 
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+
+    <link rel="stylesheet" href="style.css">
+    <title>| The End |</title>
+</head>
+<body oncontextmenu="return false">
+    <div class="toast" id="errorToast">You dont have permissions to do this!</div>
+
+    <div class="header" style="width: 100%; height: auto; background-color: rgb(5, 5, 5); ">
+
+    <a href="/GENERIC LOGIN THING/index.html" style="color: white;"><i style="margin: 1rem; position: absolute;" class="fa fa-sign-out out" aria-hidden="true"></i></a>
+
+    <a href="#" id="question" onclick="hint()" style="color: white;"><i style="margin: 1rem; position: absolute;" class="fa-solid fa-question inu" aria-hidden="true"></i></a>
+    
+    <center><i class="fa-solid fa-terminal" onclick="mostrarTerminal()" style="border: 1px solid white; padding: 5px ; border-radius: 8px; transition: 0.5s ease ; cursor: pointer; margin: 1rem;"></i></center>   
+    <div onclick="mostrarTerminal()"  class="terminal" style="width: 100%; text-align: center; margin: 1rem ; position: absolute;">
+
+ </div>
+
+   
+    <div class="stars-bg" id="main2">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+    
+     
+    </div>
+
+
+
+  <br>
+
+
+
+
+    <div class="matrix-bg" ></div>
+
+
+    
+
+
+
+
+ <div class="" id="terminal9208" style="display: none;">
+
+
+    <center><div class="fakeMenu">
+        <div onclick="mostrarTerminal()" class="fakeButtons fakeClose"></div>
+        <div onclick="mostrarTerminal()" class="fakeButtons fakeMinimize"></div>
+        <div onclick="mostrarTerminal()" class="fakeButtons fakeZoom"></div>
+      </div></center>
+      <div class="fakeScreen">
+        <p class="line1">Hey! It seems like you have access to the console! <span class="cursor1"></span></p>
+        <p class="line2">That looks very great, please follow the commands above: <span class="cursor2"></span></p>
+        <p class="line3"><br> 
+            <span style="color: rgb(0, 247, 255);"> Skip: Type this command to skip to any level | Ex: skip 5 (Max 8)   </span> <br>
+            Print: Print something here | Ex: print abobora <br>
+            Calc: Make a mathematical equation | Ex: calc 1 * 99 <br>
+           Exit: Type this to exit the console <br>
+          <br>
+          <br><input style="opacity: 0.5;" type="text" id="commandInput" placeholder=">_"></span>
+        </p>
+        <p>
+          <span id="reply"></span>
+        </p>
+      </div>
+      
+
+ </div>
+
+   
+<script>
+   
+   
+
+</script>
+
+    <main class="main1" id="main1" style="margin-top: 5rem;">
+        <section class="glitch-section">
+            <img src="imagens/federation.png" alt="" class="glitch-img">
+            <h1 class="glitch">the void</h1>
+            <h2 class="glitch">Welcome to the void</h2>
+            <p class="glitch">Wanna find out the answers?</p>
+            <a class="glitch-btn glitch" href="#" id="exploring-link">Start the Game</a>
+           <input class="in" type="tel" maxlength="3" oninput="checkNumber()">
+        </section>
+
+
+<div class="container2 typing-container"> 
+     <section class="sec2 shapes-container">
+    <h1 class="confi">Session Info</h1>
+    <p class="dog star9208">Logged as: <code></code></p>
+
+    <p class="star9205 terminal2 text color-text-flow" id="rainbow2" onclick="mostrarTerminal()" onclick="mostrarTerminal()">Console Acess: <a id="isenabled"></a> </p>
+    <p  class="cachorro">Confidential Info: <span class="confidential">Blocked</span></p>
+    <p id="darkModeText" class="star9208">StarsMode: <i class="fas fa-star"></i></p>
+
+</section>
+</div>
+    </main>
+
+
+
+
+
+
+
+    <script src="https://kit.fontawesome.com/bef417f226.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+    <audio id="audio" autoplay loop>
+        <source src="audio/thevoid.mp3" type="audio/mpeg">
+    </audio>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    document.getElementById('commandInput').addEventListener('input', function(event) {
+    // Captura o valor digitado no input
+    var command = this.value.trim().toLowerCase();
+    // Coloca o valor digitado dentro do span cursor3
+    document.getElementById('commandValue').textContent = command;
+  });
+</script>
+
+
+<script>
+document.getElementById('commandInput').addEventListener('keyup', function(event) {
+    // Verifica se a tecla pressionada é 'Enter'
+    if (event.keyCode === 13) {
+        // Captura o valor digitado no input
+        var userInput = document.getElementById('commandInput').value.trim().toLowerCase();
+        // Lógica para lidar com os comandos
+        var reply = document.getElementById('reply');
+        var command = userInput.split(' ')[0]; // Extrai o comando digitado
+        var textToDisplay = userInput.substring(command.length + 1); // Extrai o texto após o comando
+
+        switch (command) {
+            case 'exit':
+                reply.textContent = 'Saindo do console...';
+                // Executa a função mostrarTerminal após um pequeno atraso para mostrar a mensagem de 'Saindo do console...'
+                setTimeout(function() {
+                    mostrarTerminal();
+                }, 1000);
+                break;
+            case 'skip':
+                if(admin){
+                    
+                    
+
+
+
+
+                    var newLevel = parseInt(textToDisplay);
+                    if (!isNaN(newLevel)) {
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    reply.innerHTML = ("Alright! Your new Level is " + newLevel+"! <br> Type 'menu' to skip this level and go to the selection menu");
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                reply.textContent = ("Your actual level is alweady higher than " + newLevel);
+        
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+}
+
+
+
+
+
+
+
+
+                }else{
+                    reply.innerHTML = '<p style="color:red;">You need to have <span style="color:cyan;">Full Acess</span> permissions to do this</p>';
+                }
+         
+                // Lógica criativa para lidar com o comando 'skip'
+                break;
+            case 'print':
+                reply.textContent = textToDisplay; // Exibe o texto digitado após o comando "print"
+                break;
+             
+            case 'calc':
+                // Tenta avaliar a expressão matemática fornecida pelo usuário
+                try {
+                    var result = eval(textToDisplay); // Avalia a expressão matemática
+                    reply.textContent = 'Resultado: ' + result; // Exibe o resultado da expressão
+                } catch (error) {
+                    reply.textContent = 'Failed to calc! Please Verify your sintaxe.'; // Em caso de erro na expressão
+                }
+                break;
+
+                case 'menu':
+                // Tenta avaliar a expressão matemática fornecida pelo usuário
+                try {
+                   window.location.href = 'LEVEL -2/index.html'
+                } catch (error) {
+                    reply.textContent = 'Failed to calc! Please Verify your sintaxe.'; // Em caso de erro na expressão
+                }
+                break;
+                
+                
+
+
+
+            default:
+                reply.textContent = 'Comando não reconhecido.';
+                break;
+        }
+        // Limpa o input após pressionar 'Enter'
+        document.getElementById('commandInput').value = '';
+    }
+});
+
+
+
+
+
+
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAwIY0tol3DjhSdDRdZGUQVU5TsiqWBhwM",
+      authDomain: "the-void-1b86a.firebaseapp.com",
+      projectId: "the-void-1b86a",
+      storageBucket: "the-void-1b86a.appspot.com",
+      messagingSenderId: "629518131133",
+      appId: "1:629518131133:web:6a1617370f0829e089bcd4"
+    };
+
+firebase.initializeApp(firebaseConfig)
+ 
+ if(firebase.app().options.apiKey === firebaseConfig.apiKey) {
+     console.log('Database conectada com sucesso');
+ } else {
+     console.error('Erro ao conectar ao Firebase');
+     location.reload();
+ }
+
+
+
+
+
+</script>
+
+
+
+<script>
+   var admin = false; // Declare admin variable outside
+
+// Verifica as credenciais do usuário no localStorage
+var userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
+if (userCredentials) {
+    var username = userCredentials.username;
+    var password = userCredentials.password;
+
+    // Referência à coleção de usuários na Firebase
+    var usersRef = firebase.firestore().collection("users");
+
+    // Verifica se o usuário existe e se é admin
+    usersRef.doc(username).get().then(function(doc) {
+        if (doc.exists) {
+            var userData = doc.data();
+            if (userData.password === password && userData.admin === true) {
+                // Se as credenciais estiverem corretas e for admin
+                console.log("Usuário autenticado como admin.");
+                document.getElementById('isenabled').textContent = 'Full Acess';
+                document.getElementById("rainbow2").classList.add("rainbow2");
+                admin = true; // Assign admin value
+            
+            } else {
+                console.log("Credenciais incorretas ou usuário não é admin.");
+                
+                
+            }
+        } else {
+            console.log("Usuário não encontrado.");
+        }
+    }).catch(function(error) {
+        console.log("Erro ao verificar usuário:", error);
+    });
+} else {
+    console.log("Credenciais de usuário não encontradas no localStorage.");
+}
+
+if (admin){
+    document.getElementById('isenabled').textContent = 'Enabled';
+}
+else{
+    document.getElementById('isenabled').textContent = 'Moderated';
+}
+
+var ativado = false;
+
+function mostrarTerminal() {
+    
+        var elemento = document.getElementById("terminal9208");
+
+        if (!ativado) {
+            elemento.classList.add("mostrar");
+            elemento.style.display = "block";
+            ativado = true;
+        } else {
+            elemento.classList.add("esconder");
+            setTimeout(function() {
+                elemento.style.display = "none";
+                elemento.classList.remove("mostrar", "esconder");
+            }, 300); // Wait for the animation to complete
+            ativado = false;
+        }
+    function showErrorToast() {
+    var toast = document.getElementById("errorToast");
+    toast.classList.add("show-toast");
+    setTimeout(function(){
+        toast.classList.remove("show-toast");
+    }, 3000); // 3000 milissegundos = 3 segundos
+}
+}
+
+
+</script>
+
+
+
+<script>
+    function hint() {
+var toast = document.getElementById("errorToast");
+toast.classList.add("show-toast");
+document.getElementById('errorToast').textContent = 'Look at the title of the tab :)';
+setTimeout(function(){
+    toast.classList.remove("show-toast");
+   
+}, 3000); // 3000 milissegundos = 3 segundos
+}
+</script>
+
+
+<script>
+    window.onload = function() {
+    var elements = document.querySelectorAll('*'); // Seleciona todos os elementos da página
+    elements.forEach(function(element) {
+        if (element.classList.contains('in') || element.classList.contains('toast') ) {
+            element.classList.remove('show'); // Remove a classe 'show' dos elementos com classe 'in' ou 'toast'
+        } else {
+            element.classList.add('show'); // Adiciona a classe 'show' a todos os outros elementos
+        }
+    });
+};
+
+    </script>
+    
+    <script>
+        function mudarCorBordaTerminal(hover) {
+            var terminalDiv = document.querySelector('#terminal');
+            if (hover) {
+                terminalDiv.classList.add('borda-verde');
+            } else {
+                terminalDiv.classList.remove('borda-verde');
+            }
+        }
+        
+        
+        </script>
+</body>
+</html>

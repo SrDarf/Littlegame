@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">   
+    <link rel="stylesheet" href="style.css">
+    <title>Lets Play!</title>
+</head>
+<body class="noise-wrapper">
+    <div class="noise"></div>
+
+
+
+    
+<!-- PT-BR -->
+
+<!-- Sou um guia, sem fim aparente,
+Com ruas e cidades, meu poder é latente.
+Satélites me ajudam a navegar com precisão,
+Se você se perde, sou sua salvação.
+
+Quem sou eu, tão útil e prático,
+Quando se trata de encontrar o lugar exato?
+Uma pista para resolver este enigma rápido,
+Minha resposta é o que você precisa, isso é um fato. -->
+
+<!-- Ah! Lembre de remover os espaços de cada um dos primeiros resultados que conseguir se não o nosso
+"Guia" não vai conseguir reconhecer a Latitude e Longitude-->
+
+<!-- EN-US -->
+
+<!-- I am a guide, with no apparent end,
+With streets and cities, my power is latent.
+Satellites help me navigate accurately,
+If you get lost, I am your salvation.
+
+Who am I, so useful and practical,
+When it comes to finding the exact place?
+A clue to solve this quick riddle,
+My answer is what you need, that's a fact. -->
+
+<!-- Oh! Remember to remove the spaces from each of the first results you get if not ours
+"Guide" will not be able to recognize Latitude and Longitude -->
+
+
+
+
+
+
+
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+      
+
+
+
+    <a href="/GENERIC LOGIN THING/index.html" style="color: white; margin: 1rem;">
+        <i class="fa fa-sign-out out" aria-hidden="true"></i>
+        
+    </a>
+  
+  <center>  <a href="/LEVEL 1/LEVEL -2/index.html" style="color: white;" class="aref"><i class="fa-solid fa-house"> </i></a>  </center>
+  
+  
+    <a href="#" id="question" onclick="alert('Find the longitude and latitude by analyzing the color and position of the colors of the moved pieces, when you find the number the input will turn green and you will get a latitude and longitude, after that just put it on Google maps and you will find an island with a Plus Code in the bar on the side and this will be the answer')" style=" margin: 1rem;" class="hintbtn">
+        <i class="fa-solid fa-question inu" aria-hidden="true"></i>
+    </a>
+    <a href="#">   <i class="fa-solid fa-forward inu"  id="1" onclick="skipLVL()"></i> </a>
+  </header>
+  
+    <div class="container"> 
+     <img src="Images/chess2.png" alt="">
+    </div>
+
+     <div class="container2">
+        <h1><span></span>-<input maxlength="2" type="tel" class="number-input" id="numInput1">.22594274</h1>
+        <h1><span></span>-<input maxlength="2" type="tel" class="number-input" id="numInput2">.68682585</h1>
+        <h1><span>
+            Chess is an interesting game, you must INSPECT all the elements before making a new move</h1>
+        </span>
+    </div>
+
+    <div class="console" style="color: rgb(17, 238, 17);">
+        <p id="output">C:\  <span id="typing-text"> </span>   <br><br></p>
+    </div>
+
+    
+
+        <audio id="audio" autoplay loop>
+        <source src="audio/fire.mp3" type="audio/mpeg">
+
+<script src="script.js"></script>
+
+
+
+<!-- PASSWORD_BEFORE_INVERSION = 1212 -->
+      
+<div class="toast" id="errorToast" style="position: absolute;">No Hints here</div>
+      
+<script src="https://kit.fontawesome.com/bef417f226.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyAwIY0tol3DjhSdDRdZGUQVU5TsiqWBhwM",
+    authDomain: "the-void-1b86a.firebaseapp.com",
+    projectId: "the-void-1b86a",
+    storageBucket: "the-void-1b86a.appspot.com",
+    messagingSenderId: "629518131133",
+    appId: "1:629518131133:web:6a1617370f0829e089bcd4"
+  };
+
+firebase.initializeApp(firebaseConfig)
+
+if(firebase.app().options.apiKey === firebaseConfig.apiKey) {
+   console.log('Database conectada com sucesso');
+} else {
+   console.error('Erro ao conectar ao Firebase');
+   location.reload();
+}
+
+
+const db = firebase.firestore();
+const usersRef = db.collection('users');
+let win = false; 
+
+let userData;
+
+
+const userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
+const { username, password } = userCredentials;
+
+usersRef.doc(username).get().then(doc => {
+    if (doc.exists) {
+        userData = doc.data();
+        if (userData.password === password) {
+            console.log("Credenciais válidas. Usuário autenticado com sucesso.");
+
+            if (userData.level < 4){
+            window.location.href = '/403.html'
+            }
+        
+            
+
+        } else {
+            console.log("Senha incorreta. Por favor, verifique suas credenciais.");
+        }
+    } else {
+        console.log("Usuário não encontrado. Por favor, verifique suas credenciais.");
+    }
+}).catch(error => {
+    console.error("Erro ao verificar credenciais:", error);
+});
+
+
+
+
+const textToTypeInitial = " Insert the Password"; 
+const textToTypeReplacement = " Insert the Plus Code:"; 
+const typingSpeed = 100; 
+const deletionSpeed = 50; 
+const inputDelay = 1000; 
+
+const typingElement = document.getElementById("typing-text");
+const inputElement = document.createElement("input");
+inputElement.type = "text"; 
+inputElement.style.display = "none"; 
+
+setTimeout(() => {
+    typingElement.textContent = ""; 
+    typingElement.style.display = "inline"; 
+
+    let charIndex = 0;
+    const typingInterval = setInterval(() => {
+        typingElement.textContent += textToTypeInitial[charIndex];
+        charIndex++;
+        
+        if (charIndex === textToTypeInitial.length) {
+            clearInterval(typingInterval);
+
+            setTimeout(() => {
+                const deletionInterval = setInterval(() => {
+                    if (typingElement.textContent.length > 0) {
+                        typingElement.textContent = typingElement.textContent.slice(0, -1);
+                    } else {
+                        clearInterval(deletionInterval);
+                        
+                        charIndex = 0;
+                        typingIntervalReplacement = setInterval(() => {
+                            typingElement.textContent += textToTypeReplacement[charIndex];
+                            charIndex++;
+                            
+                            if (charIndex === textToTypeReplacement.length) {
+                                clearInterval(typingIntervalReplacement);
+                                document.getElementById("output").appendChild(inputElement);
+                                inputElement.style.display = "inline"; 
+                                
+                                inputElement.addEventListener("input", function() {
+                                    if (inputElement.value === "4CJ9Q8F7+J7") {
+                                        
+                                        
+          
+                                        const newLevel = 5; // Define o novo nível
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    console.log("Nível do usuário atualizado para", newLevel);
+                    // Redireciona para a nova página do site
+                    window.location.href = "LEVEL -5/index.html";
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
+                window.location.href = "LEVEL -5/index.html";
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+
+                                        
+                                        
+
+                                        
+                                        
+                                 
+                                    }
+                                });
+                            }
+                        }, typingSpeed);
+                    }
+                }, deletionSpeed);
+            }, inputDelay);
+        }
+    }, typingSpeed);
+}, 1000);
+
+document.addEventListener("DOMContentLoaded", function() {
+    var numInput1 = document.getElementById("numInput1");
+    var numInput2 = document.getElementById("numInput2");
+
+    numInput1.addEventListener("input", function() {
+        if (numInput1.value === "37") {
+            numInput1.style.color = "rgb(0, 255, 0)";
+        } else {
+            numInput1.style.color = "rgb(255, 2, 2)";
+        }
+    });
+
+    numInput2.addEventListener("input", function() {
+        if (numInput2.value === "12") {
+            numInput2.style.color = "rgb(0, 255, 0)";
+        } else {
+            numInput2.style.color = "rgb(255, 2, 2)";
+        }
+    });
+});
+
+$(window).on('load', addNoise);
+
+function addNoise() {
+  $('.loader').text('Bring in \'da noise!');
+  $('.noise-wrapper').css('opacity',1);
+}
+
+
+
+
+
+
+function skipLVL() {
+    const confirmed = window.confirm("You really want to skip to level 5?");
+    if (confirmed) {
+                 
+const newLevel = 5; // Define o novo nível
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    console.log("Nível do usuário atualizado para", newLevel);
+                    // Redireciona para a nova página do site
+                    window.location.href = "LEVEL -5/index.html";
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
+                window.location.href = "LEVEL -5/index.html";
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+
+    } else {
+        console.log("Operação cancelada pelo usuário.");
+    }
+}
+
+
+</script>
+<script>
+function hint() {
+var toast = document.getElementById("errorToast");
+toast.classList.add("show-toast");
+setTimeout(function(){
+toast.classList.remove("show-toast");
+
+}, 3000); 
+}
+</script>
+
+
+
+</body>
+</html>

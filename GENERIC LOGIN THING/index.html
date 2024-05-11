@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css.css">
+<title>Federation | Login</title>
+</head>
+
+<body id="body">
+    <div class="toast" id="errorToast">Please, fill all the fields</div>
+    <div class="stars-bg">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+
+
+    <div class="container" id="container">
+        <div class="logo">
+            <center><img src="/images/image.png" alt="Logo"></center>
+        </div>
+        <form id="login-form" onsubmit="loginUser(event)">
+            <p class="glitch">User</p>
+            <input id="username" type="text" class="input-field" placeholder="" ><br>
+            <p class="glitch">Password <i class="fa-solid fa-eye" id="eyeIconId"></i> </p>
+            <input id="password" type="password" class="input-field" placeholder="" ><br>
+            <button type="submit" class="login-btn"><span class="glitch">Log In</span></button>
+            <br><br>
+            <center><p><a href="#redirecting" onclick="redirect()" style="text-decoration: none; color: white;"> Create an Account</a></p></center>
+        </form>
+    </div>
+
+
+
+
+<script>   
+
+  function redirect() {
+    var elements = document.querySelectorAll('*'); // Seleciona todos os elementos da página
+    elements.forEach(function(element) {
+        element.classList.remove('show2');
+        element.classList.add('show'); // Adiciona a classe 'show' a cada elemento
+    });
+        setTimeout(function() {
+            window.location.href = "create/create.html";
+        }, 1500); // Aguarda 500ms antes de redirecionar
+    }
+
+</script>
+
+<script>
+       window.onload = function() {
+    var elements = document.querySelectorAll('*'); // Seleciona todos os elementos da página
+    elements.forEach(function(element) {
+        element.classList.add('show2'); // Adiciona a classe 'show' a cada elemento
+    });
+};
+</script>
+
+
+
+<script>
+
+const errorDiv = document.getElementById("errorToast");
+
+function loginUser(event) {
+    event.preventDefault(); 
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if (username.trim() === "" || password.trim() === "") {
+    showErrorToast();
+    const errorDiv = document.getElementById("errorDiv"); // Supondo que você tenha um elemento com id "errorDiv" para exibir mensagens de erro
+        if (errorDiv) {
+            errorDiv.innerText = "Por favor, verifique seu nome de usuário e senha.";
+        }
+        
+        runStaticAnimation();
+        applyGlitchEffect();
+    }
+
+    firebase.firestore().collection("users").doc(username).get()
+      .then((doc) => {
+        if (doc.exists) {
+          const userData = doc.data();
+          if (userData.password === password) {
+            // Salvar informações do usuário no Armazenamento Local
+            const userCredentials = {
+              username: username,
+              password: password,
+              expiry: Date.now() + 12 * 60 * 60 * 1000 // 12 horas em milissegundos
+            };
+            localStorage.setItem("userCredentials", JSON.stringify(userCredentials));
+
+            showErrorToast()
+            setTimeout(() => {
+             window.location.href = "/LEVEL 1/index.html ";
+             }, 3000); 
+            showErrorToast()
+            errorDiv.innerText = "Logged sucessfully! :D"
+          } else {
+            showErrorToast()
+            errorDiv.innerText = "Please, check your internet conection" 
+            runStaticAnimation();
+            applyGlitchEffect();
+          }
+        } else {
+          showErrorToast()
+          errorDiv.innerText = "Please, check your Username and password"
+          runStaticAnimation();
+          applyGlitchEffect();
+        }
+      })
+      .catch((error) => {
+        console.error("Erro ao acessar o banco de dados:", error);
+        alert("Erro ao acessar o banco de dados");
+      });
+}
+
+
+
+
+function runStaticAnimation() {
+    const body = document.body;
+    if (body) {
+     
+        body.classList.add("static-animation");
+
+        setTimeout(() => {
+            body.classList.remove("static-animation");
+        }, 1000); 
+    }
+}
+
+
+
+
+</script>
+
+
+<script src="toast.js"></script>
+<script src="firebase.js"></script>
+<script src="js.js"></script>
+
+
+<!-- firebase -->
+
+
+
+<script src="https://kit.fontawesome.com/bef417f226.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAwIY0tol3DjhSdDRdZGUQVU5TsiqWBhwM",
+      authDomain: "the-void-1b86a.firebaseapp.com",
+      projectId: "the-void-1b86a",
+      storageBucket: "the-void-1b86a.appspot.com",
+      messagingSenderId: "629518131133",
+      appId: "1:629518131133:web:6a1617370f0829e089bcd4"
+    };
+
+firebase.initializeApp(firebaseConfig)
+ 
+ if(firebase.app().options.apiKey === firebaseConfig.apiKey) {
+     console.log('Database conectada com sucesso');
+ } else {
+     console.error('Erro ao conectar ao Firebase');
+     location.reload();
+ }
+
+
+</script>
+
+
+
+<script>
+    const eyeIcon = document.getElementById('eyeIconId');
+        const passwordInput = document.getElementById('password');
+        eyeIcon.addEventListener('click', togglePasswordVisibility);
+    
+        const confirmEyeIcon = document.getElementById('confirmEyeIconId');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        confirmEyeIcon.addEventListener('click', toggleConfirmPasswordVisibility);
+    
+        function togglePasswordVisibility() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    
+        function toggleConfirmPasswordVisibility() {
+            if (confirmPasswordInput.type === 'password') {
+                confirmPasswordInput.type = 'text';
+                confirmEyeIcon.classList.remove('fa-eye');
+                confirmEyeIcon.classList.add('fa-eye-slash');
+            } else {
+                confirmPasswordInput.type = 'password';
+                confirmEyeIcon.classList.remove('fa-eye-slash');
+                confirmEyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
+</body>
+</html>

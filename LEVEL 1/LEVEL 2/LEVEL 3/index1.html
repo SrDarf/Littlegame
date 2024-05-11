@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labirinto Maluco</title>
+</head>
+<body>
+    <div class="stars-bg">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+      </div>
+    
+   
+
+    <div class="game-container">
+        <div class="character" id="character"> <i class="fas fa-chevron-up"></i> </div>
+    
+        <div class="wall" style="left: 100px; top: 0px; width: 20px; height: 90%;"></div>
+        <div class="wall" style="left: 200px; bottom: 0px; width: 20px; height: 90%;"></div>
+        <div class="wall movable" style="left: 300px; top: 0px; width: 20px; height: 200px;"></div>
+        <div class="wall" style="left: 300px; bottom: 0px; width: 20px; height: 50%;"></div>
+        <div class="wall" style="left: 400px; top: 100px; width: 20px; height: 99%;"></div>
+        <div class="wall" style="left: 500px; top: 0px; width: 20px; height: 50%;"></div>
+        <div class="wall" style="left: 500px; bottom: 0px; width: 20px; height: 45%;"></div>
+        <div class="wall" style="left: 600px; bottom: 0px; width: 20px; height: 70%;"></div>
+        <div class="wall" style="left: 600px; top: 0px; width: 20px; height: 20%;"></div>
+        <div class="wall" style="left: 700px; top: 0px; width: 20px; height: 75%;"></div>
+
+
+        <div class="wall movable2" style="left: 800px; top: 0px; width: 20px; height: 20%;"></div>
+    
+        <div class="wall" style="left: 900px; bottom: 0px; width: 20px; height: 90%;"></div>
+        <div class="wall" style="left: 1000px; top: 0px; width: 20px; height: 80%;"></div>
+        <div class="wall" style="left: 1100px; bottom: 0px; width: 20px; height: 50%;"></div>
+        <div class="wall" style="left: 1100px; top: 0px; width: 20px; height: 45%;"></div>
+        <div class="wall" style="left: 1200px; top: 150px; width: 20px; height: 90%;"></div>
+        <div class="wall" style="left: 1300px; top: 0px; width: 20px; height: 90%;"></div>
+
+        <div class="wall special" id="specialCircle" style="margin-left: 95%; bottom: 2.5vh;"></div>
+
+        <div class="controler">
+            <div class="controlerspot">
+
+                <div class="hint" id="show-Popup">
+                    <i class="fas fa-lightbulb lamp-icon" onclick="hint()"></i>
+                    <center>  <a href="/LEVEL 1/LEVEL -2/index.html" style="color: white;" class="aref"><i class="fa-solid fa-house"> </i></a>  </center>
+                    <i class="fa-solid fa-forward" id="1" onclick="skipLVL()"></i>
+                </div>
+             
+                <h1>Controles</h1>
+                <div class="ins">
+                    <h1>
+                        <i class="fa-regular fa-keyboard"></i> <br>W A S D <br>
+                        <span class="small">
+                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-chevron-right"></i>
+                            <i class="fas fa-chevron-up"></i>
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                        <br>
+                        <button id="okButton">Ok</button>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        
+  
+
+    <script src="script1.js"></script>
+    <audio id="audio" autoplay loop>
+        <source src="audio/HEYY!.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <script>
+        window.onload = function() {
+             var elements = document.querySelectorAll('.black'); 
+             elements.forEach(function(element) {
+                 element.classList.add('hidden'); 
+             });
+         };
+      </script>
+      
+      
+      
+      
+      <!-- PASSWORD_BEFORE_INVERSION = 1212 -->
+      
+      <div class="toast" id="errorToast" style="position: absolute;">No Hints here</div>
+      
+      <script src="https://kit.fontawesome.com/bef417f226.js" crossorigin="anonymous"></script>
+      <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+      <script>
+const firebaseConfig = {
+    apiKey: "AIzaSyAwIY0tol3DjhSdDRdZGUQVU5TsiqWBhwM",
+    authDomain: "the-void-1b86a.firebaseapp.com",
+    projectId: "the-void-1b86a",
+    storageBucket: "the-void-1b86a.appspot.com",
+    messagingSenderId: "629518131133",
+    appId: "1:629518131133:web:6a1617370f0829e089bcd4"
+  };
+
+firebase.initializeApp(firebaseConfig)
+
+if(firebase.app().options.apiKey === firebaseConfig.apiKey) {
+   console.log('Database conectada com sucesso');
+} else {
+   console.error('Erro ao conectar ao Firebase');
+   location.reload();
+}
+
+
+const db = firebase.firestore();
+const usersRef = db.collection('users');
+let win = false; 
+
+let userData;
+
+
+const userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
+const { username, password } = userCredentials;
+
+usersRef.doc(username).get().then(doc => {
+    if (doc.exists) {
+        userData = doc.data();
+        if (userData.password === password) {
+            console.log("Credenciais válidas. Usuário autenticado com sucesso.");
+
+            if (userData.level < 3){
+            window.location.href = '/403.html'
+            }
+        
+            
+
+        } else {
+            console.log("Senha incorreta. Por favor, verifique suas credenciais.");
+        }
+    } else {
+        console.log("Usuário não encontrado. Por favor, verifique suas credenciais.");
+    }
+}).catch(error => {
+    console.error("Erro ao verificar credenciais:", error);
+});
+
+      
+
+
+const gameContainer = document.querySelector('.game-container');
+const character = document.getElementById('character');
+const walls = document.querySelectorAll('.wall');
+
+let characterX = 0;
+let characterY = 0;
+let characterRotation = 0;
+const moveSpeed = 5;
+const rotationSpeed = 3;
+const keysPressed = {};
+let pre = 'fas fa-chevron-up';
+
+let characterHit = false;
+
+function updateCharacterPosition() {
+    character.style.left = characterX + 'px';
+    character.style.top = characterY + 'px';
+    character.style.transform = `rotate(${characterRotation}deg)`;
+}
+
+function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+}
+
+function smoothMovement() {
+    const containerRect = gameContainer.getBoundingClientRect();
+    const containerWidth = containerRect.width;
+    const containerHeight = containerRect.height;
+
+    const deltaX = (keysPressed['ArrowRight'] || keysPressed['d'] ? moveSpeed : 0) -
+        (keysPressed['ArrowLeft'] || keysPressed['a'] ? moveSpeed : 0);
+
+    const deltaY = (keysPressed['ArrowDown'] || keysPressed['s'] ? moveSpeed : 0) -
+        (keysPressed['ArrowUp'] || keysPressed['w'] ? moveSpeed : 0);
+
+    const targetX = clamp(characterX + deltaX, 0, containerWidth - character.clientWidth);
+    const targetY = clamp(characterY + deltaY, 0, containerHeight - character.clientHeight);
+
+    let collision = false;
+    walls.forEach((wall) => {
+        const wallRect = wall.getBoundingClientRect();
+        const characterRect = character.getBoundingClientRect();
+
+        if (
+            characterRect.right + deltaX > wallRect.left &&
+            characterRect.left + deltaX < wallRect.right &&
+            characterRect.bottom + deltaY > wallRect.top &&
+            characterRect.top + deltaY < wallRect.bottom
+        ) {
+            collision = true;
+        }
+    });
+
+    if (!collision) {
+        characterX = targetX;
+        characterY = targetY;
+
+        if (deltaX > 0) {
+            characterRotation = rotationSpeed;
+        } else if (deltaX < 0) {
+            characterRotation = -rotationSpeed;
+        } else {
+            characterRotation = 0;
+        }
+    }
+
+    updateCharacterPosition();
+
+    const arrow = character.querySelector('i');
+
+    if (keysPressed['ArrowUp'] || keysPressed['w']) {
+        pre = 'fas fa-chevron-up';
+    } else if (keysPressed['ArrowRight'] || keysPressed['d']) {
+        pre = 'fas fa-chevron-right';
+    } else if (keysPressed['ArrowLeft'] || keysPressed['a']) {
+        pre = 'fas fa-chevron-left';
+    } else if (keysPressed['ArrowDown'] || keysPressed['s']) {
+        pre = 'fas fa-chevron-down';
+    }
+    
+    
+    arrow.className = pre;
+}
+
+document.addEventListener('keydown', (event) => {
+    keysPressed[event.key] = true;
+});
+
+document.addEventListener('keyup', (event) => {
+    keysPressed[event.key] = false;
+});
+
+function checkCharacterCollision() {
+    const characterRect = character.getBoundingClientRect();
+    const specialElements = document.querySelectorAll('.special');
+
+    specialElements.forEach((specialElement) => {
+        const specialRect = specialElement.getBoundingClientRect();
+
+        if (
+            characterRect.right > specialRect.left &&
+            characterRect.left < specialRect.right &&
+            characterRect.bottom > specialRect.top &&
+            characterRect.top < specialRect.bottom
+        ) {
+            
+
+            
+const newLevel = 4; // Define o novo nível
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    console.log("Nível do usuário atualizado para", newLevel);
+                    // Redireciona para a nova página do site
+                    window.location.href = "LEVEL 4/index.html";
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
+                window.location.href = "LEVEL 4/index.html";
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+
+
+ 
+        }
+    });
+}
+
+function gameLoop() {
+    smoothMovement();
+    checkCharacterCollision();
+
+    if (characterHit) {
+        
+        characterX = 0;
+        characterY = 0;
+        characterHit = false;
+    }
+
+    requestAnimationFrame(gameLoop);
+}
+
+function createProjectile() {
+    const projectile = document.createElement('div');
+    projectile.className = 'projectile';
+    gameContainer.appendChild(projectile);
+
+    const containerRect = gameContainer.getBoundingClientRect();
+    const containerHeight = containerRect.height;
+    const projectileHeight = 20;
+
+    const initialX = containerRect.width - projectileHeight - 100;
+    const initialY = Math.random() * (containerHeight - projectileHeight);
+
+    projectile.style.left = initialX + 'px';
+    projectile.style.top = initialY + 'px';
+
+    const projectileSpeed = 5;
+
+    function moveProjectile() {
+        const projectileRect = projectile.getBoundingClientRect();
+        const characterRect = character.getBoundingClientRect();
+
+        if (
+            projectileRect.left < characterRect.right &&
+            projectileRect.right > characterRect.left &&
+            projectileRect.top < characterRect.bottom &&
+            projectileRect.bottom > characterRect.top
+        ) {
+            location.reload();
+        }
+
+        const newX = projectileRect.left - projectileSpeed;
+        projectile.style.left = newX + 'px';
+
+        if (newX + projectileHeight < 0) {
+            gameContainer.removeChild(projectile);
+        } else {
+            requestAnimationFrame(moveProjectile);
+        }
+    }
+
+    moveProjectile();
+}
+
+const okButton = document.getElementById('okButton');
+const controler = document.querySelector('.controler');
+
+okButton.addEventListener('click', () => {
+    controler.classList.add('hide');
+    gameLoop();
+    setInterval(createProjectile, 200);
+});
+
+var icon = document.getElementById("HIHIHI");
+
+
+icon.onclick = function() {
+   
+    var confirmacao = confirm("Tem certeza que quer pular de fase? Recomendo que utilize apenas se o Nível estiver bugado em sua tela.");
+    
+   
+    if (confirmacao) {
+        window.location.href = "LEVEL 4/index.html"; 
+    }
+};
+
+
+function skipLVL() {
+    // Exibe uma caixa de diálogo de confirmação para o usuário
+    const confirmed = window.confirm("You really want to skip that level?");
+    
+    // Verifica se o usuário confirmou
+    if (confirmed) {
+                   
+const newLevel = 4; // Define o novo nível
+
+// Obtém os dados do usuário atual na Firestore
+usersRef.doc(username).get()
+    .then(doc => {
+        if (doc.exists) {
+            const userData = doc.data();
+            const currentLevel = userData.level; // Obtém o nível atual do usuário
+
+            if (newLevel > currentLevel) {
+                // Se o novo nível for maior que o nível atual, atualiza os dados do usuário
+                usersRef.doc(username).update({
+                    level: newLevel,
+                    reallevel: newLevel // Define reallevel para o mesmo valor que o novo nível
+                })
+                .then(() => {
+                    console.log("Nível do usuário atualizado para", newLevel);
+                    // Redireciona para a nova página do site
+                    window.location.href = "LEVEL 4/index.html";
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar o nível do usuário:", error);
+                });
+            } else {
+                console.log("O novo nível não é maior que o nível atual, não foi necessário atualizar.");
+                window.location.href = "LEVEL 4/index.html";
+            }
+        } else {
+            console.log("Documento do usuário não encontrado.");
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao obter dados do usuário:", error);
+    });
+    } else {
+        console.log("Operação cancelada pelo usuário.");
+    }
+}
+
+      
+      </script>
+      <script>
+      function hint() {
+      var toast = document.getElementById("errorToast");
+      toast.classList.add("show-toast");
+      setTimeout(function(){
+      toast.classList.remove("show-toast");
+      }, 3000); 
+      }
+      </script>
+
+</body>
+</html>

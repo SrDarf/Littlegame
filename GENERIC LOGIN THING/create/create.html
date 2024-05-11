@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="create.css">
+<title>Federation | Login</title>
+</head>
+
+<body>
+
+    <div class="stars-bg">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+
+<div class="container" id="container">
+    <div class="logo">
+       <center> <img src="/images/image.png" alt="Logo"></center>
+    </div>
+    <form id="signup-form">
+        <p class="glitch">Username </p>
+        <input id="username" type="text" class="input-field" placeholder="" required><br>
+        
+        <p class="glitch">Password <i class="fa-solid fa-eye" id="eyeIconId"></i></p>  </p>
+        <input type="password" id="password" class="input-field"  placeholder="" required><br>
+        <p class="glitch">Confirm Password <i class="fa-solid fa-eye" id="confirmEyeIconId"></i></p>  </p>
+        <input type="password" id="confirm-password" class="input-field confirm" placeholder="" required><br>
+        <button type="submit" class="login-btn"><span class="glitch">Sign In</span></button>
+        <br><br>
+       <center><p><a onclick="redirect()" href="#"  style="text-decoration: none; color: white;"> Alweady Have an Account?</a></p></center>
+    </form>
+    <center><div id="error" style="color: red;"></div></center>
+    <center><div id="sucess" style="color: rgb(30, 255, 0);"></div></center>
+</div>
+
+
+<script>
+
+      function redirect() {
+    var elements = document.querySelectorAll('*'); // Seleciona todos os elementos da página
+    elements.forEach(function(element) {
+        element.classList.add('show2'); // Adiciona a classe 'show' a cada elemento
+    });
+        setTimeout(function() {
+            window.location.href = "/GENERIC LOGIN THING/index.html";
+        }, 1500); // Aguarda 500ms antes de redirecionar
+    }
+
+</script>
+
+<script>
+   window.onload = function() {
+    var elements = document.querySelectorAll('*'); // Seleciona todos os elementos da página
+    elements.forEach(function(element) {
+        element.classList.add('show'); // Adiciona a classe 'show' a cada elemento
+    });
+};
+
+
+</script>
+
+
+
+<script src="https://kit.fontawesome.com/bef417f226.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAwIY0tol3DjhSdDRdZGUQVU5TsiqWBhwM",
+      authDomain: "the-void-1b86a.firebaseapp.com",
+      projectId: "the-void-1b86a",
+      storageBucket: "the-void-1b86a.appspot.com",
+      messagingSenderId: "629518131133",
+      appId: "1:629518131133:web:6a1617370f0829e089bcd4"
+    };
+
+firebase.initializeApp(firebaseConfig)
+ 
+ if(firebase.app().options.apiKey === firebaseConfig.apiKey) {
+     console.log('Database conectada com sucesso');
+ } else {
+     console.error('Erro ao conectar ao Firebase');
+     location.reload();
+ }
+
+
+</script>
+
+
+
+<script>
+ // JavaScript
+
+// Referência ao Firestore
+const db = firebase.firestore();
+
+// Registro de Usuário
+document.getElementById("signup-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Impede o envio do formulário
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+    const errorDiv = document.getElementById("error"); // Referência à div de erro
+    const sucessDiv = document.getElementById("sucess");
+
+    if (password !== confirmPassword) {
+        errorDiv.innerText = "The Passwords doesn't math."; // Exibe mensagem de erro
+    } else {
+        // Verifica se o usuário já existe
+        db.collection("users").doc(username).get()
+            .then((doc) => {
+                if (doc.exists) {
+                    errorDiv.innerText ="Another user with this Username alweady exists"
+                } else {
+                    // Adiciona o novo usuário à coleção
+                    db.collection("users").doc(username).set({
+                        password: password,
+                        items: [],
+                        score: 0
+                    })
+                    .then(() => {
+                        sucessDiv.innerText = "User Registred Sucessfully!";
+                        errorDiv.innerText = ""
+                        setTimeout(redirect(), 1000);
+
+                    })
+                    .catch((error) => {
+                        errorDiv.innerText = "Failed to Register, please check your internet conection";
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error("Erro ao verificar usuário:", error);
+            });
+    }
+});
+
+// Login de Usuário
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Impede o envio do formulário
+
+    const username = document.getElementById("login-username").value;
+    const password = document.getElementById("login-password").value;
+
+    // Verifica se as credenciais correspondem a um usuário na coleção
+    db.collection("users").doc(username).get()
+        .then((doc) => {
+            if (doc.exists) {
+                const userData = doc.data();
+                if (userData.password === password) {
+                    console.log("Login bem-sucedido");
+                    // Faça o que for necessário após o login bem-sucedido
+                } else {
+                    console.log("Senha incorreta");
+                }
+            } else {
+                console.log("Usuário não encontrado");
+            }
+        })
+        .catch((error) => {
+            console.error("Erro ao fazer login:", error);
+        });
+});
+
+</script>
+
+<script>
+const eyeIcon = document.getElementById('eyeIconId');
+    const passwordInput = document.getElementById('password');
+    eyeIcon.addEventListener('click', togglePasswordVisibility);
+
+    const confirmEyeIcon = document.getElementById('confirmEyeIconId');
+    const confirmPasswordInput = document.getElementById('confirm-password');
+    confirmEyeIcon.addEventListener('click', toggleConfirmPasswordVisibility);
+
+    function togglePasswordVisibility() {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    }
+
+    function toggleConfirmPasswordVisibility() {
+        if (confirmPasswordInput.type === 'password') {
+            confirmPasswordInput.type = 'text';
+            confirmEyeIcon.classList.remove('fa-eye');
+            confirmEyeIcon.classList.add('fa-eye-slash');
+        } else {
+            confirmPasswordInput.type = 'password';
+            confirmEyeIcon.classList.remove('fa-eye-slash');
+            confirmEyeIcon.classList.add('fa-eye');
+        }
+    }
+</script>
+
+
+</body>
+</html>
