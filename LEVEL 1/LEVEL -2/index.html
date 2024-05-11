@@ -18,7 +18,7 @@
 
 
 
-    <div class="wrapper" style="position: absolute;">
+    <div class="wrapper" style="position: absolute;" id="myWrapper">
         <input type="checkbox" id="btn" hidden>
         <label for="btn" class="menu-btn">
             <i class="fas fa-trophy"></i>
@@ -621,5 +621,17 @@ if (userCredentials && userCredentials.username) {
 </script>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var wrapper = document.getElementById("myWrapper");
+    wrapper.classList.add("clique");
+
+    // Simular clique novamente após 2 segundos
+    setTimeout(function() {
+        wrapper.click();
+    }, 2000);
+});
+</script>
+    
 </body>
 </html>
