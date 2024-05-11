@@ -13,6 +13,28 @@
 <body id="body" oncontextmenu="return false">
 
 
+
+
+
+
+
+    <div class="wrapper" style="position: absolute;">
+        <input type="checkbox" id="btn" hidden>
+        <label for="btn" class="menu-btn">
+            <i class="fas fa-trophy"></i>
+          <i class="fas fa-times"></i>
+        </label>
+        <nav id="sidebar">
+   
+ 
+        </nav>
+      </div>
+
+
+
+    
+
+
    <div class="black hidden">
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -255,6 +277,64 @@ const usersRef = db.collection('users');
 
 let userData; // Declare a global variable to store userData
 let admin = false
+
+
+
+
+const usersCollection = firebase.firestore().collection('users');
+
+function listarUsuariosPorNivel() {
+  usersCollection.get()
+    .then((querySnapshot) => {
+      const users = [];
+      querySnapshot.forEach((doc) => {
+        // Obtém o ID do documento como nome de usuário
+        const username = doc.id;
+        const userData = doc.data();
+        // Adiciona o nome de usuário ao objeto de dados do usuário
+        userData.username = username;
+        users.push(userData);
+      });
+
+      // Ordena os usuários por nível (do maior para o menor)
+      users.sort((a, b) => b.level - a.level);
+
+      const sidebar = document.getElementById("sidebar");
+
+      // Limpa o conteúdo existente
+      sidebar.innerHTML = "";
+
+      // Adiciona um título h1 antes de listar os usuários
+      const title = document.createElement("h1");
+      title.textContent = "Leaderboard";
+      sidebar.appendChild(title);
+
+      // Limita a listagem a no máximo 15 usuários
+      const maxUsers = Math.min(15, users.length);
+
+      // Aplica cores gradientes alternadas aos três primeiros usuários
+      users.slice(0, maxUsers).forEach((user, index) => {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = `${index + 1}.  ${user.username}, Level: ${user.level}`;
+        
+        // Aplica cores gradientes aos três primeiros usuários
+        if (index < 3) {
+            paragraph.classList.add("first-three-users");
+        }
+        
+        // Adiciona o parágrafo ao elemento com o id "sidebar"
+        sidebar.appendChild(paragraph);
+      });
+    })
+    .catch((error) => {
+      console.log("Erro ao buscar usuários:", error);
+    });
+}
+
+
+
+  // Chama a função para listar os usuários por nível
+  listarUsuariosPorNivel();
 
 const userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
 const { username, password } = userCredentials;
