@@ -299,7 +299,14 @@ header {
   left: 0;
 
 }
-.wrapper .menu-btn{
+@keyframes tiltAnimation {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.wrapper .menu-btn {
   position: absolute;
   left: 0px;
   top: 3%;
@@ -315,6 +322,7 @@ header {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  animation: blinkBlue 6s infinite, tiltAnimation 2s ease-in-out 1 forwards;
 }
 #btn:checked ~ .menu-btn{
   left: 247px;
