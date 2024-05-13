@@ -459,21 +459,26 @@ usersRef.doc(username).get()
 
 <script>
 // Adicionando evento de clique aos botões
-document.getElementById('top').addEventListener('mousedown', function() {
+document.getElementById('top').addEventListener('touchstart', function(event) {
+    event.preventDefault(); // Impede o comportamento padrão do navegador
     keysPressed['ArrowUp'] = true;
 });
 
-document.getElementById('right').addEventListener('mousedown', function() {
+document.getElementById('right').addEventListener('touchstart', function(event) {
+    event.preventDefault(); // Impede o comportamento padrão do navegador
     keysPressed['ArrowRight'] = true;
 });
 
-document.getElementById('left').addEventListener('mousedown', function() {
+document.getElementById('left').addEventListener('touchstart', function(event) {
+    event.preventDefault(); // Impede o comportamento padrão do navegador
     keysPressed['ArrowLeft'] = true;
 });
 
-document.getElementById('bottom').addEventListener('mousedown', function() {
+document.getElementById('bottom').addEventListener('touchstart', function(event) {
+    event.preventDefault(); // Impede o comportamento padrão do navegador
     keysPressed['ArrowDown'] = true;
 });
+
 
 // Event listener para o fim de clique nos botões
 document.querySelectorAll('.control__button').forEach(button => {
