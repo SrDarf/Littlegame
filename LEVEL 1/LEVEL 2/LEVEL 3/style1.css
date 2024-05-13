@@ -266,3 +266,54 @@ body{
 .show-toast {
     opacity: 1;
 }
+
+
+.control{
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .control {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        border: 2px solid rgba(0, 0, 0, .3);
+        transform: rotate(45deg);
+        overflow: hidden;
+        position: fixed;
+        z-index: 999999;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    
+    
+    .control__button {
+        display: block;
+        cursor: pointer;
+        position: relative;
+        background: rgba(255, 255, 255, 0.5); 
+        border-width: 0;
+    }
+    
+    .control__button > svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        fill: rgba(0, 0, 0, 0.5);
+        width: 33%;
+        height: 33%;
+        display: block;
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    
+    .control__button:focus {
+        outline: none;
+        background-color: rgba(250, 235, 215, 0.5); 
+    }
+    
+}
