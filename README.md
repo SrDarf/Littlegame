@@ -3,42 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            color: #333;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            color: #333;
-        }
-        h2 {
-            color: #666;
-        }
-        code {
-            background-color: #f4f4f4;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        .screenshot {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        pre {
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 10px;
-            overflow-x: auto;
-        }
-    </style>
+    
 </head>
 <body>
     <h1>Jogo de Quebra-Cabeça Simples</h1>
