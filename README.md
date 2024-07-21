@@ -29,8 +29,8 @@
         <p>If you want to contribute to this project, please send a pull request or open an issue to discuss improvements and fixes.</p>
     </div>
     <div class="section">
-        <h2>Puzzles created by:</h2>
-        <p><strong>Suri.</strong></p>
+        <h2>Puzzles created with love by:</h2>
+        <p><center><strong>Suri</strong></center></p>
     </div>
 </body>
 </html>
