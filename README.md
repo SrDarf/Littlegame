@@ -21,7 +21,7 @@
     </div>
     <div class="section">
         <h2>Como Jogar</h2>
-        <p>Arraste e solte as peças do quebra-cabeça para resolver os enigmas em cada fase. O jogo detecta automaticamente quando todos os enigmas estão resolvidos.</p>
+        <p>Apenas passe da primeira parte e será disponibilizado um menu na qual você pode selecionar as suas fases liberadas.</p>
         <img src="screenshot.png" alt="Screenshot do Jogo" class="screenshot">
     </div>
     <div class="section">
