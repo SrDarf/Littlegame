@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
 </head>
 <body>
     <h1>Jogo de Quebra-Cabeça Simples</h1>
@@ -36,6 +36,11 @@ cd seu-repositorio
 # Abra o arquivo HTML no seu navegador
 index.html
         </code></pre>
+    </div>
+    <div class="section">
+        <h2>Acesse o Jogo</h2>
+        <p>Você pode jogar o quebra-cabeça online acessando o seguinte link:</p>
+        <p><a href="https://srdarf.github.io/SURIS/GENERIC%20LOGIN%20THING/index.html" target="_blank">Jogar Quebra-Cabeça</a></p>
     </div>
     <div class="section">
         <h2>Contribuições</h2>
