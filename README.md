@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+   
 </head>
 <body>
     <h1>Jogo de Quebra-Cabeça Simples</h1>
     <div class="section">
         <h2>Descrição</h2>
-        <p>Este é um jogo de quebra-cabeça simples criado como um projeto escolar. O objetivo do jogo é resolver o quebra-cabeça rearranjando as peças na ordem correta.</p>
+        <p>Este é um jogo de quebra-cabeça simples criado como um projeto escolar. O objetivo do jogo é resolver uma série de enigmas, cada um em uma fase diferente. O jogo é composto por 8 fases, com um enigma único para cada fase.</p>
     </div>
     <div class="section">
         <h2>Funcionalidades</h2>
         <ul>
             <li>Interface intuitiva e fácil de usar.</li>
+            <li>8 fases diferentes, cada uma com um enigma único.</li>
             <li>Peças do quebra-cabeça interativas que podem ser arrastadas.</li>
-            <li>Verificação automática quando o quebra-cabeça é resolvido.</li>
+            <li>Verificação automática quando o enigma é resolvido.</li>
         </ul>
     </div>
     <div class="section">
         <h2>Como Jogar</h2>
-        <p>Arraste e solte as peças do quebra-cabeça para colocá-las na posição correta. O jogo detecta automaticamente quando todas as peças estão na ordem certa.</p>
+        <p>Arraste e solte as peças do quebra-cabeça para resolver os enigmas em cada fase. O jogo detecta automaticamente quando todos os enigmas estão resolvidos.</p>
         <img src="screenshot.png" alt="Screenshot do Jogo" class="screenshot">
     </div>
     <div class="section">
