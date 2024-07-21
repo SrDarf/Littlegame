@@ -26,19 +26,14 @@
     </div>
     <div class="section">
         <h2>Instalação e Execução</h2>
-        <pre><code>
     <div class="section">
         <h2>Acesse o Jogo</h2>
-        <p>Você pode jogar o quebra-cabeça online acessando o seguinte link:</p>
-        <p><a href="https://srdarf.github.io/SURIS/GENERIC%20LOGIN%20THING/index.html" target="_blank">Jogar Quebra-Cabeça</a></p>
+        <p>Você pode jogar o enigma online acessando o seguinte link:</p>
+        <p><a href="https://srdarf.github.io/SURIS/GENERIC%20LOGIN%20THING/index.html" target="_blank">TheVoid</a></p>
     </div>
     <div class="section">
         <h2>Contribuições</h2>
         <p>Se você quiser contribuir para este projeto, por favor, envie um pull request ou abra uma issue para discutir melhorias e correções.</p>
-    </div>
-    <div class="section">
-        <h2>Licença</h2>
-        <p>Este projeto está licenciado sob a <a href="https://opensource.org/licenses/MIT" target="_blank">Licença MIT</a>.</p>
     </div>
 </body>
 </html>
