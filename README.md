@@ -7,7 +7,7 @@
    
 </head>
 <body>
-    <h1>Jogo de Quebra-Cabeça Simples</h1>
+    <h1>Está pronto para um desafio?</h1>
     <div class="section">
         <h2>Descrição</h2>
         <p>Este é um jogo de quebra-cabeça simples criado como um projeto escolar. O objetivo do jogo é resolver uma série de enigmas, cada um em uma fase diferente. O jogo é composto por 8 fases, com um enigma único criado especialmente por mim para cada fase.</p>
