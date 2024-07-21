@@ -10,15 +10,13 @@
     <h1>Jogo de Quebra-Cabeça Simples</h1>
     <div class="section">
         <h2>Descrição</h2>
-        <p>Este é um jogo de quebra-cabeça simples criado como um projeto escolar. O objetivo do jogo é resolver uma série de enigmas, cada um em uma fase diferente. O jogo é composto por 8 fases, com um enigma único para cada fase.</p>
+        <p>Este é um jogo de quebra-cabeça simples criado como um projeto escolar. O objetivo do jogo é resolver uma série de enigmas, cada um em uma fase diferente. O jogo é composto por 8 fases, com um enigma único criado especialmente por mim para cada fase.</p>
     </div>
     <div class="section">
         <h2>Funcionalidades</h2>
         <ul>
-            <li>Interface intuitiva e fácil de usar.</li>
+            <li>Cada fase terá uma mecanica diferente e um novo jeito de pensar para resolver cada enigma.</li>
             <li>8 fases diferentes, cada uma com um enigma único.</li>
-            <li>Peças do quebra-cabeça interativas que podem ser arrastadas.</li>
-            <li>Verificação automática quando o enigma é resolvido.</li>
         </ul>
     </div>
     <div class="section">
@@ -29,16 +27,6 @@
     <div class="section">
         <h2>Instalação e Execução</h2>
         <pre><code>
-# Clone este repositório
-git clone https://github.com/srdarf/seu-repositorio.git
-
-# Navegue até o diretório do projeto
-cd seu-repositorio
-
-# Abra o arquivo HTML no seu navegador
-index.html
-        </code></pre>
-    </div>
     <div class="section">
         <h2>Acesse o Jogo</h2>
         <p>Você pode jogar o quebra-cabeça online acessando o seguinte link:</p>
